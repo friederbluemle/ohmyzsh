@@ -19,7 +19,7 @@ alias 7='cd -7'
 alias 8='cd -8'
 alias 9='cd -9'
 
-alias md='mkdir -p'
+#alias md='mkdir -p'
 alias rd=rmdir
 
 function d () {
@@ -33,6 +33,6 @@ compdef _dirs d
 
 # List directory contents
 alias lsa='ls -lah'
-alias l='ls -lah'
-alias ll='ls -lh'
+alias l='ls -lah --group-directories-first'
+alias ll='ls -lh --group-directories-first'
 alias la='ls -lAh'
