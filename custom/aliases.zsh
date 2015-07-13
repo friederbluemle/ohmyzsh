@@ -21,8 +21,8 @@ alias xs='cdiff -s'
 alias as='android-studio'
 alias asb='android-studio build.gradle'
 
-alias ez='vim ~/.dotfiles/oh-my-zsh/custom/aliases.zsh'
-alias sz='source ~/.dotfiles/oh-my-zsh/custom/aliases.zsh'
+alias ez='vim ~/.oh-my-zsh/custom/aliases.zsh'
+alias sz='source ~/.oh-my-zsh/custom/aliases.zsh'
 alias szz='source ~/.zshrc'
 
 alias st='gnome-open'
