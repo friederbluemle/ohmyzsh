@@ -13,6 +13,16 @@ ugw() {
     git commit -m"Update Gradle wrapper to $*"
 }
 
+# Express init
+expinit() {
+    express --git $1
+    cd $1
+    git init
+    git add .
+    git commit -m"Initial commit"
+    npm update
+}
+
 replacelines() {
   ack "$1" -la --print0 | xargs -0 -n 1 sed -i "s/$1/$2/";
 }
