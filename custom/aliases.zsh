@@ -22,6 +22,7 @@ alias as='android-studio'
 alias asb='android-studio build.gradle'
 
 alias ez='vim ~/.oh-my-zsh/custom/aliases.zsh'
+alias ezz='vim ~/.zshrc'
 alias sz='source ~/.oh-my-zsh/custom/aliases.zsh'
 alias szz='source ~/.zshrc'
 
@@ -34,6 +35,10 @@ alias gwb='./gradlew build'
 alias gwt='./gradlew tasks'
 alias gwv='./gradlew --version'
 alias gwcb='./gradlew clean build'
+
+# node
+alias ns='npm start'
+alias nt='npm test'
 
 # git
 alias gs='git status -sb'
