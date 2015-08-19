@@ -28,6 +28,8 @@ alias szz='source ~/.zshrc'
 
 alias st='gnome-open'
 
+alias lsn="ls -l | awk '{k=0;for(i=0;i<=8;i++)k+=((substr(\$1,i+2,1)~/[rwx]/)*2^(8-i));if(k)printf(\"%0o \",k);print}'"
+
 alias gradlew='./gradlew'
 alias gw='./gradlew'
 alias gwc='./gradlew clean'
@@ -35,6 +37,8 @@ alias gwb='./gradlew build'
 alias gwt='./gradlew tasks'
 alias gwv='./gradlew --version'
 alias gwcb='./gradlew clean build'
+
+alias pc='~/github/JakeWharton/pidcat/pidcat.py'
 
 # node
 alias ns='npm start'
@@ -66,6 +70,7 @@ alias grt='[ ! -z `git rev-parse --show-cdup` ] && cd `git rev-parse --show-cdup
 alias gh="git remote -v | grep --color=never origin | head -n 1 | grep --color=never -o 'github.*' | sed 's/.git\ .*//' | sed 's/\:/\//' | sed 's/^/https:\/\//' | xargs google-chrome"
 
 alias ackandsdk="ack -i 'com\.android\.tools\.build|buildtools|build\-tools|compilesdk|targetsdk|target=|android-'"
+alias cpsshpub="xclip -sel clip < ~/.ssh/id_rsa.pub"
 
 # p2p
 alias upp='adb uninstall com.paypal.android.p2pmobile'
