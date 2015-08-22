@@ -8,8 +8,6 @@ alias ppp='cd ../../..'
 alias md='take'
 
 alias a='sack'
-alias f='wd'
-alias g='google'
 alias j='jobs'
 alias n='mousepad'
 alias t='tree'
