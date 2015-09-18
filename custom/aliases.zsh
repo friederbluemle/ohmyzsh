@@ -9,7 +9,6 @@ alias md='take'
 
 alias a='sack'
 alias j='jobs'
-alias n='mousepad'
 alias t='tree'
 alias s='subl'
 alias v='vim'
@@ -32,6 +31,7 @@ alias gradlew='./gradlew'
 alias gw='./gradlew'
 alias gwc='./gradlew clean'
 alias gwb='./gradlew build'
+alias gwl='./gradlew lint'
 alias gwt='./gradlew tasks'
 alias gwv='./gradlew --version'
 alias gwcb='./gradlew clean build'
@@ -43,6 +43,7 @@ alias ns='npm start'
 alias nt='npm test'
 
 # git
+alias git=hub
 alias gs='git status -sb'
 alias gsi='git status -sb --ignored'
 alias gd='git diff'
