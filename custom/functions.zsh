@@ -23,12 +23,16 @@ expinit() {
     npm update
 }
 
+n() {
+  nohup mousepad $1 </dev/null &>/dev/null &
+}
+
 replacelines() {
-  ack "$1" -la --print0 | xargs -0 -n 1 sed -i "s/$1/$2/";
+  ack "$1" -l --print0 | xargs -0 -n 1 sed -i "s/$1/$2/";
 }
 
 deletelines() {
-  ack "$1" -la --print0 | xargs -0 -n 1 sed -i "/$1/d";
+  ack "$1" -l --print0 | xargs -0 -n 1 sed -i "/$1/d";
 }
 
 git_branch_color() {
