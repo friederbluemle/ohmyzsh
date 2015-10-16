@@ -42,6 +42,10 @@ alias pc='~/github/JakeWharton/pidcat/pidcat.py'
 alias ns='npm start'
 alias nt='npm test'
 
+# eb app shortcuts
+alias eblive="sed -i 's/eb-ps-sandbox-app/eb-ps-live-web/g' .elasticbeanstalk/config.yml"
+alias ebsand="sed -i 's/eb-ps-live-web/eb-ps-sandbox-app/g' .elasticbeanstalk/config.yml"
+
 # git
 alias git=hub
 alias gs='git status -sb'
