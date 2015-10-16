@@ -9,7 +9,7 @@ alias md='take'
 
 alias a='sack'
 alias j='jobs'
-alias t='tree'
+alias t='tree -C'
 alias s='subl'
 alias v='vim'
 alias x='cdiff'
