@@ -23,6 +23,33 @@ expinit() {
     npm update
 }
 
+# git clone wrapper
+gcl() {
+    if [ $# -gt 0 ]; then
+        local GITHUB_ROOT=$HOME/github
+        local GITHUB_USER="friederbluemle"
+
+        local ORG_NAME=`dirname $1`
+        local REPO_NAME=`basename $1`
+
+        if [ $ORG_NAME = "." ]; then
+            local DIR_NAME="$GITHUB_ROOT/$GITHUB_USER/$REPO_NAME"
+        else
+            local DIR_NAME="$GITHUB_ROOT/$ORG_NAME/$REPO_NAME"
+        fi
+
+        if [[ ! -d $DIR_NAME ]]; then
+            git clone $1 $DIR_NAME
+        fi
+
+        if [[ -d $DIR_NAME ]]; then
+            cd $DIR_NAME
+        fi
+    else
+        echo "Need to pass repo id as user/repo"
+    fi
+}
+
 n() {
   nohup mousepad $1 </dev/null &>/dev/null &
 }
