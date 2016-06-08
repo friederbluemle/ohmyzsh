@@ -13,6 +13,13 @@ ugw() {
     git commit -m"Update Gradle wrapper to $*"
 }
 
+# Update Android Gradle plug-in
+uagp() {
+    sed -i "s#.build:gradle:[[:digit:]].[[:digit:]].[[:digit:]]#.build:gradle:$*#g" build.gradle
+    git add build.gradle
+    git commit -m"Update Android Gradle plug-in to $*"
+}
+
 # Express init
 expinit() {
     express --git $1
