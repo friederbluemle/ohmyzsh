@@ -10,7 +10,7 @@ alias md='take'
 alias a='sack'
 alias j='jobs'
 alias t='tree -C'
-alias s='subl'
+alias s='subl3'
 alias v='vim'
 alias x='cdiff'
 alias xs='cdiff -s'
@@ -23,7 +23,7 @@ alias ezz='vim ~/.zshrc'
 alias sz='source ~/.oh-my-zsh/custom/aliases.zsh'
 alias szz='source ~/.zshrc'
 
-alias st='gnome-open'
+alias st='xdg-open'
 
 alias lsn="ls -l | awk '{k=0;for(i=0;i<=8;i++)k+=((substr(\$1,i+2,1)~/[rwx]/)*2^(8-i));if(k)printf(\"%0o \",k);print}'"
 
@@ -69,9 +69,11 @@ alias grq='GIT_SEQUENCE_EDITOR=: git rebase --autosquash -i origin/master'
 alias grc='git rebase --continue'
 alias grm='git rebase master'
 alias grim='git rebase -i master'
+alias grht='git reset --hard `git rev-parse --abbrev-ref --symbolic-full-name @{u}`'
 alias gsp='git stash pop'
 alias gcm='git checkout master'
-alias gcd='git checkout develop'
+alias gcd='git checkout'
+alias gco='git checkout -'
 alias gl='git log'
 alias gll='git log --format=fuller'
 alias gl1='gll -1'
@@ -86,6 +88,7 @@ alias ackandsdk="ack -i 'com\.android\.tools\.build|buildtools|build\-tools|comp
 alias aackandsdk="a -i 'com\.android\.tools\.build|buildtools|build\-tools|compilesdk|targetsdk|target=|android-'"
 alias cpsshpub="xclip -sel clip < ~/.ssh/id_rsa.pub"
 alias aaa="a '<<<' && F 1"
+alias alint="android-lint-summary -g '**/lint-results*.xml'"
 
 # p2p
 alias upp='adb uninstall com.paypal.android.p2pmobile'
