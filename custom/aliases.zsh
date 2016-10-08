@@ -16,7 +16,7 @@ alias x='cdiff'
 alias xs='cdiff -s'
 
 alias as='android-studio'
-alias asb='android-studio build.gradle'
+alias ws='wstorm'
 
 alias ez='vim ~/.oh-my-zsh/custom/aliases.zsh'
 alias ezz='vim ~/.zshrc'
@@ -36,7 +36,7 @@ alias gwt='./gradlew tasks'
 alias gwv='./gradlew --version'
 alias gwcb='./gradlew clean build'
 
-alias pc='~/github/JakeWharton/pidcat/pidcat.py'
+alias pc='pidcat'
 
 # node
 alias ns='npm start'
@@ -77,6 +77,10 @@ alias gco='git checkout -'
 alias gl='git log'
 alias gll='git log --format=fuller'
 alias gl1='gll -1'
+alias gs1='git show HEAD'
+alias gs2='git show HEAD~1'
+alias gs3='git show HEAD~2'
+alias gs4='git show HEAD~3'
 alias gcp='git cherry-pick'
 alias gr='git log --graph --full-history --color --date=short --pretty=format:"%x1b[31m%h%x09%x1b[30;1m%ad%x1b[0m%x1b[32m%d%x1b[0m%x20%s%x20%x1b[34;1m[%aE]"'
 alias gr1='gr -10'
@@ -89,10 +93,4 @@ alias aackandsdk="a -i 'com\.android\.tools\.build|buildtools|build\-tools|compi
 alias cpsshpub="xclip -sel clip < ~/.ssh/id_rsa.pub"
 alias aaa="a '<<<' && F 1"
 alias alint="android-lint-summary -g '**/lint-results*.xml'"
-
-# p2p
-alias upp='adb uninstall com.paypal.android.p2pmobile'
-alias cpp='adb shell pm clear com.paypal.android.p2pmobile'
-alias tpp='adb shell am instrument -w -r com.paypal.android.p2pmobile.test/cucumber.api.android.CucumberInstrumentation'
-
-alias p2p='~/ppgithub/android/p2pmobile/etc/tools/p2p.sh'
+alias olint="find . -iname lint-results-*.html -print0 | xargs -0 google-chrome"
