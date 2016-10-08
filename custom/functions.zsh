@@ -129,3 +129,9 @@ git_branch_info() {
     return 0
   fi
 }
+
+ssh_status() {
+  if [[ -n $SSH_CONNECTION ]]; then
+    echo -ne "%{$reset_color%}:%{$fg[magenta]%}SSH!"
+  fi
+}
