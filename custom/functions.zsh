@@ -13,11 +13,11 @@ ugw() {
     git commit -m"Update Gradle wrapper to $*"
 }
 
-# Update Android Gradle plug-in
+# Update Android Gradle plugin
 uagp() {
     sed -i "s#.build:gradle:[[:digit:]].[[:digit:]].[[:digit:]]#.build:gradle:$*#g" build.gradle
     git add build.gradle
-    git commit -m"Update Android Gradle plug-in to $*"
+    git commit -m"Update Android Gradle plugin to $*"
 }
 
 # Express init
@@ -32,18 +32,17 @@ expinit() {
 
 # git clone wrapper
 gcl() {
+    local ORG_DEFAULT="friederbluemle"
+    local DIR_DEFAULT=$HOME/github
     if [ $# -gt 0 ]; then
-        local GITHUB_ROOT=$HOME/github
-        local GITHUB_USER="friederbluemle"
-
         local ORG_NAME=`dirname $1`
         local REPO_NAME=`basename $1`
 
         if [ $ORG_NAME = "." ]; then
-            local DIR_NAME="$GITHUB_ROOT/$GITHUB_USER/$REPO_NAME"
-        else
-            local DIR_NAME="$GITHUB_ROOT/$ORG_NAME/$REPO_NAME"
+            ORG_NAME=$ORG_DEFAULT
         fi
+
+        local DIR_NAME="$DIR_DEFAULT/$ORG_NAME/$REPO_NAME"
 
         if [[ ! -d $DIR_NAME ]]; then
             git clone $1 $DIR_NAME
@@ -53,7 +52,10 @@ gcl() {
             cd $DIR_NAME
         fi
     else
-        echo "Need to pass repo id as user/repo"
+        echo "Usage: gcl [org/]repo"
+        echo ""
+        echo "Clones a GitHub repo to $DIR_DEFAULT/<org>/<repo>"
+        echo "If no org is specified, defaults to $ORG_DEFAULT"
     fi
 }
 
@@ -92,31 +94,29 @@ git_branch_color() {
 }
 
 git_branch_info() {
-  #git rev-parse --git-dir >/dev/null 2>&1
-  branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
+  branch=$(command git rev-parse --abbrev-ref HEAD 2>/dev/null)
   if [ $? -eq 0 ]; then
     echo -ne "%{$reset_color%}:"
     git_status=$(command git status --untracked-files=no --ignore-submodules=dirty --porcelain 2>/dev/null)
-    if [ $? -eq 128 ]; then
+    if [[ $? -eq 128 ]]; then
       echo -ne "%{$fg[magenta]%}GIT_DIR!"
     else
-      #branch=$(command git describe --all --always 2>/dev/null | sed "s/.*\///")
-      if [ -z $git_status ]; then
+      if [[ -z $git_status ]]; then
         echo -ne "%{$fg[green]%}${branch}"
       else
         echo -ne "%{$fg[red]%}${branch}"
       fi
       git config --get branch.$branch.remote >/dev/null 2>&1
-      if [ $? -eq 0 ]; then
+      if [[ $? -eq 0 ]]; then
         diverged=$(command git log @{u}... --oneline | wc -l)
-        if [ $diverged -ne 0 ]; then
+        if [[ $diverged -ne 0 ]]; then
           echo -ne "%{$fg_bold[yellow]%}"
           ahead=$(command git log @{u}.. --oneline | wc -l)
-          if [ $ahead -eq $diverged ]; then
+          if [[ $ahead -eq $diverged ]]; then
             echo -ne "↑ $ahead"
           else
             behind=$(command git log ..@{u} --oneline | wc -l)
-            if [ $behind -eq $diverged ]; then
+            if [[ $behind -eq $diverged ]]; then
               echo -ne "↓ $behind"
             else
               echo -ne "↕ ↑ $ahead↓ $behind"
