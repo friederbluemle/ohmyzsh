@@ -22,11 +22,11 @@ uagp() {
 
 # Express init
 expinit() {
-    express --git $1
-    cd $1
+    express --git $1 && cd $1
     git init
     git add .
     git commit -m"Initial commit"
+    npm version minor
     npm update
 }
 
