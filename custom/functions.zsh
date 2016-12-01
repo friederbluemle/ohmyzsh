@@ -30,6 +30,29 @@ expinit() {
     npm update
 }
 
+debugsign() {
+    jarsigner -verbose -keystore ~/.android/debug.keystore -storepass android -keypass android "$1" androiddebugkey
+}
+
+dexinfo() {
+    if [ "$#" -eq 0 ]; then
+        echo "Usage: dexinfo app1.apk [app2.apk ...]"
+    fi
+    for file
+    do
+        if jar xvf "$file" classes.dex > /dev/null 2>&1; then
+            echo "File name: "$(basename "$file")
+            hexdump -s 32 -n 4 -e '1/4 "File size: %d\n"' classes.dex
+            hexdump -s 56 -n 4 -e '1/4 "Strings:   %d\n"' classes.dex
+            hexdump -s 80 -n 4 -e '1/4 "Fields:    %d\n"' classes.dex
+            hexdump -s 88 -n 4 -e '1/4 "Methods:   %d\n"' classes.dex
+            rm classes.dex
+        else
+            echo "Unable to open '$file' and/or extract classes.dex"
+        fi
+    done
+}
+
 # git clone wrapper
 gcl() {
     local ORG_DEFAULT="friederbluemle"
