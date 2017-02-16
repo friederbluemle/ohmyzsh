@@ -92,5 +92,5 @@ alias ackandsdk="ack -i 'com\.android\.tools\.build|buildtools|build\-tools|comp
 alias aackandsdk="a -i 'com\.android\.tools\.build|buildtools|build\-tools|compilesdk|targetsdk|target=|android-'"
 alias cpsshpub="xclip -sel clip < ~/.ssh/id_rsa.pub"
 alias aaa="a '<<<' && F 1"
-alias alint="android-lint-summary -g '**/lint-results*.xml'"
+alias alint="android-lint-summary -g '**/lint-results*.xml' | less"
 alias olint="find . -iname lint-results-*.html -print0 | xargs -0 google-chrome"
