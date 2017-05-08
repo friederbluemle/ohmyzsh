@@ -16,7 +16,7 @@ alias x='cdiff'
 alias xs='cdiff -s'
 
 alias as='android-studio'
-alias ws='wstorm'
+alias ws='webstorm'
 
 alias ez='vim ~/.oh-my-zsh/custom/aliases.zsh'
 alias ezz='vim ~/.zshrc'
