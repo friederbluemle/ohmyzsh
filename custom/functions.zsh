@@ -87,7 +87,7 @@ n() {
 }
 
 replacelines() {
-  ack "$1" -l --print0 | xargs -0 -n 1 sed -i "s/$1/$2/";
+  ack "$1" -l --print0 | xargs -0 -n 1 sed -i "s/$1/$2/g";
 }
 
 deletelines() {
