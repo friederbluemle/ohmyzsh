@@ -18,6 +18,8 @@ alias xs='cdiff -s'
 alias as='android-studio'
 alias ws='webstorm'
 
+alias ea='vim ~/.config/awesome/rc.lua'
+alias et='vim ~/.config/termite/config'
 alias ez='vim ~/.oh-my-zsh/custom/aliases.zsh'
 alias ezz='vim ~/.zshrc'
 alias sz='source ~/.oh-my-zsh/custom/aliases.zsh'
