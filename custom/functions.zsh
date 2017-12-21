@@ -1,3 +1,14 @@
+# In-place sed edit; handles GNU vs BSD -i syntax
+sed_i() {
+  if (( $+commands[gsed] )); then
+    gsed -i "$@"
+  elif command sed --version >/dev/null 2>&1; then
+    sed -i "$@"
+  else
+    sed -i '' "$@"
+  fi
+}
+
 ai () {
   local q
   printf "🤖 Ask me anything: "
@@ -134,7 +145,7 @@ ufl() {
 
 # Update Android Gradle plugin
 uagp() {
-    sed -i "s#.build:gradle:[[:digit:]].[[:digit:]].[[:digit:]]#.build:gradle:$*#g" build.gradle
+    sed_i "s#.build:gradle:[[:digit:]].[[:digit:]].[[:digit:]]#.build:gradle:$*#g" build.gradle
     git add build.gradle
     git commit -m"Update Android Gradle plugin to $*"
 }
@@ -271,11 +282,13 @@ upload_ssh_pub_to_github() {
 }
 
 replacelines() {
-  ack "$1" -l --print0 | xargs -0 -n 1 sed -i "s/$1/$2/g";
+  local files=(${(0)"$(ack "$1" -l --print0)"})
+  (( $#files )) && sed_i "s/$1/$2/g" "${files[@]}"
 }
 
 deletelines() {
-  ack "$1" -l --print0 | xargs -0 -n 1 sed -i "/$1/d";
+  local files=(${(0)"$(ack "$1" -l --print0)"})
+  (( $#files )) && sed_i "/$1/d" "${files[@]}"
 }
 
 git_branch_color() {
