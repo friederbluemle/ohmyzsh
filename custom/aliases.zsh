@@ -8,6 +8,7 @@ alias ppp='cd ../../..'
 alias md='take'
 
 alias a='sack'
+alias e='ranger'
 alias j='jobs'
 alias t='tree -C'
 alias s='subl3'
@@ -21,6 +22,7 @@ alias ws='webstorm'
 alias ea='vim ~/.config/awesome/rc.lua'
 alias et='vim ~/.config/termite/config'
 alias ez='vim ~/.oh-my-zsh/custom/aliases.zsh'
+alias ezf='vim ~/.oh-my-zsh/custom/functions.zsh'
 alias ezz='vim ~/.zshrc'
 alias sz='source ~/.oh-my-zsh/custom/aliases.zsh'
 alias szz='source ~/.zshrc'
@@ -37,6 +39,10 @@ alias gwl='./gradlew lint'
 alias gwt='./gradlew tasks'
 alias gwv='./gradlew --version'
 alias gwcb='./gradlew clean build'
+
+alias fl='fastlane_wrapper'
+alias fla='fl actions'
+alias flv='fl --version'
 
 alias pc='pidcat'
 
@@ -59,6 +65,7 @@ alias gdcs='git diff --summary --stat --cached'
 alias gdchk='git diff --check 4b825dc642cb6eb9a060e54bf8d69288fbee4904'
 alias gcan='git commit --amend --no-edit'
 alias gcic='git commit -m"Initial commit"'
+alias gce='git commit --allow-empty -m"[empty commit `date +%s | tail -c 5`]"'
 alias gf='git fetch'
 alias gfa='gf --all --prune'
 alias gbr='git branch -vv'
@@ -71,6 +78,13 @@ alias grq='GIT_SEQUENCE_EDITOR=: git rebase --autosquash -i origin/master'
 alias grc='git rebase --continue'
 alias grm='git rebase master'
 alias grim='git rebase -i master'
+alias gpf='git push fb'
+alias gpff='git push -f fb'
+alias gpr='git pull-request'
+alias grh1='git reset --hard HEAD~1'
+alias grh2='git reset --hard HEAD~2'
+alias grh3='git reset --hard HEAD~3'
+alias grh4='git reset --hard HEAD~4'
 alias grht='git reset --hard `git rev-parse --abbrev-ref --symbolic-full-name @{u}`'
 alias gsp='git stash pop'
 alias gcm='git checkout master'
@@ -88,11 +102,12 @@ alias gr='git log --graph --full-history --color --date=short --pretty=format:"%
 alias gr1='gr -10'
 alias gra='gr --all'
 alias grt='[ ! -z `git rev-parse --show-cdup` ] && cd `git rev-parse --show-cdup || pwd`'
-alias gh="git remote -v | grep --color=never origin | head -n 1 | grep --color=never -o 'github.*' | sed 's/.git\ .*//' | sed 's/\:/\//' | sed 's/^/https:\/\//' | xargs google-chrome"
+#alias gh="git remote -v | grep --color=never origin | head -n 1 | grep --color=never -o 'github.*' | sed 's/.git\ .*//' | sed 's/\:/\//' | sed 's/^/https:\/\//' | xargs open"
+alias gh='git browse'
 
 alias ackandsdk="ack -i 'com\.android\.tools\.build|buildtools|build\-tools|compilesdk|targetsdk|target=|android-'"
 alias aackandsdk="a -i 'com\.android\.tools\.build|buildtools|build\-tools|compilesdk|targetsdk|target=|android-'"
 alias cpsshpub="xclip -sel clip < ~/.ssh/id_rsa.pub"
-alias aaa="a '<<<' && F 1"
-alias alint="android-lint-summary -g '**/lint-results*.xml' | less -FRSX"
-alias olint="find . -iname lint-results-*.html -print0 | xargs -0 google-chrome"
+alias aa="a -1 '<<<' && F 1"
+alias alint="android-lint-summary -g '**/lint-result*.xml' | less -FRSX"
+alias olint="find . -iname 'lint-*.html' -print0 | xargs -0 open"
