@@ -13,11 +13,27 @@ ugw() {
     git commit -m"Update Gradle wrapper to $*"
 }
 
+# Update fastlane
+ufl() {
+    bundle update fastlane
+    git add -u
+    git commit -m"Update fastlane to $*"
+}
+
 # Update Android Gradle plugin
 uagp() {
     sed -i "s#.build:gradle:[[:digit:]].[[:digit:]].[[:digit:]]#.build:gradle:$*#g" build.gradle
     git add build.gradle
     git commit -m"Update Android Gradle plugin to $*"
+}
+
+# fastlane wrapper
+fastlane_wrapper() {
+    if [ -f Gemfile ]; then
+        bundle exec fastlane $*
+    else
+        fastlane $*
+    fi
 }
 
 # Express init
@@ -28,6 +44,10 @@ expinit() {
     git commit -m"Initial commit"
     npm version minor
     npm update
+}
+
+jenkins() {
+    java -jar ~/bin/jenkins-cli-2.86.jar -s http://localhost:8080/ $*
 }
 
 debugsign() {
