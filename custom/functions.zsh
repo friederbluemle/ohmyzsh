@@ -164,6 +164,35 @@ dexinfo() {
     done
 }
 
+# git clone wrapper
+spgcl() {
+    local ORG_DEFAULT="sp-digital"
+    local DIR_DEFAULT=$HOME/spgithub
+    if [ $# -gt 0 ]; then
+        local ORG_NAME=`dirname $1`
+        local REPO_NAME=`basename $1`
+
+        if [ $ORG_NAME = "." ]; then
+            ORG_NAME=$ORG_DEFAULT
+        fi
+
+        local DIR_NAME="$DIR_DEFAULT/$ORG_NAME/$REPO_NAME"
+
+        if [[ ! -d $DIR_NAME ]]; then
+            GITHUB_HOST=code.in.spdigital.sg git clone $ORG_NAME/$REPO_NAME $DIR_NAME
+        fi
+
+        if [[ -d $DIR_NAME ]]; then
+            cd $DIR_NAME
+        fi
+    else
+        echo "Usage: spgcl [org/]repo"
+        echo ""
+        echo "Clones a GitHub repo to $DIR_DEFAULT/<org>/<repo>"
+        echo "If no org is specified, defaults to $ORG_DEFAULT"
+    fi
+}
+
 github_clone() {
     local GH_ROOT=${GITHUB_ROOT:-$HOME/github}
     if [ $# -gt 0 ]; then
