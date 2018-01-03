@@ -28,7 +28,8 @@ alias ezz='vim ~/.zshrc'
 alias sz='source ~/.oh-my-zsh/custom/aliases.zsh'
 alias szz='source ~/.zshrc'
 
-alias st='xdg-open'
+[ -x "$(command -v xdg-open)" ] && ! [ -x "$(command -v open)" ] && alias open='xdg-open'
+alias st='open'
 
 alias lsn="ls -l | awk '{k=0;for(i=0;i<=8;i++)k+=((substr(\$1,i+2,1)~/[rwx]/)*2^(8-i));if(k)printf(\"%0o \",k);print}'"
 
@@ -56,7 +57,7 @@ alias eblive="sed -i 's/eb-ps-sandbox-app/eb-ps-live-web/g' .elasticbeanstalk/co
 alias ebsand="sed -i 's/eb-ps-live-web/eb-ps-sandbox-app/g' .elasticbeanstalk/config.yml"
 
 # git
-alias git=hub
+[ -x "$(command -v hub)" ] && alias git=hub
 alias gs='git status -sb'
 alias gsi='git status -sb --ignored'
 alias gd='git diff'
@@ -104,8 +105,11 @@ alias gr='git log --graph --full-history --color --date=short --pretty=format:"%
 alias gr1='gr -10'
 alias gra='gr --all'
 alias grt='[ ! -z `git rev-parse --show-cdup` ] && cd `git rev-parse --show-cdup || pwd`'
-#alias gh="git remote -v | grep --color=never origin | head -n 1 | grep --color=never -o 'github.*' | sed 's/.git\ .*//' | sed 's/\:/\//' | sed 's/^/https:\/\//' | xargs open"
-alias gh='git browse'
+if [ -x "$(command -v hub)" ]; then
+    alias gh='hub browse'
+else
+    alias gh="git remote -v | grep --color=never origin | head -n 1 | grep --color=never -o 'github.*' | sed 's/.git\ .*//' | sed 's/\:/\//' | sed 's/^/https:\/\//' | xargs open"
+fi
 
 alias ackandsdk="ack -i 'com\.android\.tools\.build|buildtools|build\-tools|compilesdk|targetsdk|target=|android-'"
 alias aackandsdk="a -i 'com\.android\.tools\.build|buildtools|build\-tools|compilesdk|targetsdk|target=|android-'"
