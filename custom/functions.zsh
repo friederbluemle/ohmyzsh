@@ -60,6 +60,8 @@ jenkins() {
     java -jar ~/bin/jenkins-cli-2.86.jar -s http://localhost:8080/ $*
 }
 
+show-version() { zsh --version; zle accept-line }
+
 debugsign() {
     jarsigner -verbose -keystore ~/.android/debug.keystore -storepass android -keypass android "$1" androiddebugkey
 }
