@@ -21,6 +21,7 @@ alias ws='webstorm'
 
 alias ea='vim ~/.config/awesome/rc.lua'
 alias ei='vim ~/.config/i3/config'
+alias eib='vim ~/.i3blocks.conf'
 alias et='vim ~/.config/termite/config'
 alias ez='vim ~/.oh-my-zsh/custom/aliases.zsh'
 alias ezf='vim ~/.oh-my-zsh/custom/functions.zsh'
