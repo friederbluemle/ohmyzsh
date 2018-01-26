@@ -36,6 +36,16 @@ fastlane_wrapper() {
     fi
 }
 
+check_git_tags() {
+    git show-ref -d --tags       |
+    cut -b 42-                   | # to remove the commit-id
+    sort                         |
+    sed 's/\^{}//'               | # remove ^{} markings
+    uniq -c                      | # count identical lines
+    sed 's/2\ refs\/tags\// a /' | # 2 identicals = annotated
+    sed 's/1\ refs\/tags\//lw /'
+}
+
 # Express init
 expinit() {
     express --git $1 && cd $1
