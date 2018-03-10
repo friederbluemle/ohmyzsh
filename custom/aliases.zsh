@@ -16,7 +16,7 @@ alias v='vim'
 alias x='cdiff'
 alias xs='cdiff -s'
 
-alias as='android-studio'
+alias as='studio'
 alias ws='webstorm'
 
 alias ea='vim ~/.config/awesome/rc.lua'
@@ -34,7 +34,6 @@ alias st='open'
 
 alias lsn="ls -l | awk '{k=0;for(i=0;i<=8;i++)k+=((substr(\$1,i+2,1)~/[rwx]/)*2^(8-i));if(k)printf(\"%0o \",k);print}'"
 
-alias gradlew='./gradlew'
 alias gw='./gradlew'
 alias gwc='./gradlew clean'
 alias gwb='./gradlew build'
@@ -48,14 +47,6 @@ alias fla='fl actions'
 alias flv='fl --version'
 
 alias pc='pidcat'
-
-# node
-alias ns='npm start'
-alias nt='npm test'
-
-# eb app shortcuts
-alias eblive="sed -i 's/eb-ps-sandbox-app/eb-ps-live-web/g' .elasticbeanstalk/config.yml"
-alias ebsand="sed -i 's/eb-ps-live-web/eb-ps-sandbox-app/g' .elasticbeanstalk/config.yml"
 
 # git
 [ -x "$(command -v hub)" ] && alias git=hub
@@ -72,9 +63,9 @@ alias gcir='git init && git add . && gcic'
 alias gce='git commit --allow-empty -m"[empty commit `date +%s | tail -c 5`]"'
 alias gf='git fetch'
 alias gfa='gf --all --prune'
-alias gbr='git branch -vv'
+alias gb='git branch -vv'
 alias gfo='git fork && git remote rename friederbluemle fb'
-alias gg='git grep -I -n --heading --break'
+alias ggp='git grep -I -n --heading --break'
 alias gm='git merge --ff-only'
 alias gst='git -c commit.gpgsign=false stash'
 alias gstrq='git stash && GIT_SEQUENCE_EDITOR=: git rebase --autosquash -i origin/master && git stash pop'
@@ -93,6 +84,7 @@ alias grht='git reset --hard `git rev-parse --abbrev-ref --symbolic-full-name @{
 alias gsp='git stash pop'
 alias gcm='git checkout master'
 alias gcd='git checkout'
+alias gg='git checkout'
 alias gco='git checkout -'
 alias gl='git log'
 alias gll='git log --format=fuller'
