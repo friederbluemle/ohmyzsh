@@ -114,6 +114,11 @@ gcl() {
     fi
 }
 
+# git pull request checkout
+gprc() {
+  git fetch -fu ${2:-origin} refs/pull/$1/head:pr/$1 && git checkout pr/$1
+}
+
 n() {
   nohup mousepad $1 </dev/null &>/dev/null &
 }
