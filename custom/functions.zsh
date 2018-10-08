@@ -56,6 +56,10 @@ expinit() {
     npm update
 }
 
+gjf() {
+    java -jar ~/github/google/google-java-format/core/target/google-java-format-1.7-SNAPSHOT-all-deps.jar --aosp --skip-sorting-imports $*
+}
+
 jenkins() {
     java -jar ~/bin/jenkins-cli-2.86.jar -s http://localhost:8080/ $*
 }
