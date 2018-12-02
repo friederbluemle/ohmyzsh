@@ -127,6 +127,15 @@ n() {
   nohup mousepad $1 </dev/null &>/dev/null &
 }
 
+rs() {
+  nohup ristretto "$@" > /dev/null 2>&1 & disown
+}
+
+upload_ssh_pub_to_github() {
+  local KEY=`cat ~/.ssh/id_rsa.pub`
+  curl -u "friederbluemle" --data "{\"key\":\"$KEY\"}" https://api.github.com/user/keys
+}
+
 replacelines() {
   ack "$1" -l --print0 | xargs -0 -n 1 sed -i "s/$1/$2/g";
 }
