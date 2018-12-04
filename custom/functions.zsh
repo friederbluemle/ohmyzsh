@@ -1,6 +1,18 @@
 # Make dir and cd into it
 #md() { mkdir -p "$@" && cd "$@"; }
 
+# tree wrapper that respects .gitignore
+# see https://unix.stackexchange.com/questions/291282/have-tree-hide-gitignored-files
+gtree() {
+    git_ignore_files=("$(git config --get core.excludesfile)" .gitignore ~/.gitignore_global)
+    ignore_pattern="$(grep -hvE '^$|^#' "${git_ignore_files[@]}" 2>/dev/null|sed 's:/$::'|tr '\n' '\|')"
+    if git status &> /dev/null && [[ -n "${ignore_pattern}" ]]; then
+      tree -I ".git|${ignore_pattern}" "${@}"
+    else
+      tree "${@}"
+    fi
+}
+
 # Update Gradle wrapper
 ugw() {
     echo "task w(type:Wrapper){gradleVersion='$*'}" > build.gradle
@@ -52,16 +64,18 @@ expinit() {
     git init
     git add .
     git commit -m"Initial commit"
-    npm version minor
     npm update
+    git add .
+    git commit -m"Lock packages"
+    npm version minor
 }
 
 gjf() {
-    java -jar ~/github/google/google-java-format/core/target/google-java-format-1.7-SNAPSHOT-all-deps.jar --aosp --skip-sorting-imports $*
+    java -jar ~/github/google/google-java-format/core/target/google-java-format-1.7-SNAPSHOT-all-deps.jar -i --aosp --skip-sorting-imports $*
 }
 
 jenkins() {
-    java -jar ~/bin/jenkins-cli-2.86.jar -s http://localhost:8080/ $*
+    java -jar ~/bin/jenkins-cli-2.106.jar -s http://localhost:8080/ $*
 }
 
 show-version() { zsh --version; zle accept-line }
