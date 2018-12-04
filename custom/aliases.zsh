@@ -38,6 +38,10 @@ alias st='open'
 
 alias lsn="ls -l | awk '{k=0;for(i=0;i<=8;i++)k+=((substr(\$1,i+2,1)~/[rwx]/)*2^(8-i));if(k)printf(\"%0o \",k);print}'"
 
+alias dl='cd ~/downloads'
+alias dll='ls -tr1 ~/downloads | tail'
+alias dlll='ls -ltr ~/downloads | tail'
+
 alias gw='./gradlew'
 alias gwc='./gradlew clean'
 alias gwb='./gradlew build'
@@ -63,12 +67,16 @@ alias gdcs='git diff --summary --stat --cached'
 alias gdchk='git diff --check 4b825dc642cb6eb9a060e54bf8d69288fbee4904'
 alias gcan='git commit --amend --no-edit'
 alias gcic='git commit -m"Initial commit"'
+alias gcwip='git commit -m"wip"'
 alias gcir='git init && git add . && gcic'
 alias gce='git commit --allow-empty -m"[empty commit `date +%s | tail -c 5`]"'
 alias gf='git fetch'
 alias gfa='gf --all --prune'
+alias gbr='git symbolic-ref --short HEAD'
 alias gb='git branch -vv'
-alias gfo='git fork && git remote rename friederbluemle fb'
+alias gb1='git branch -vv --sort=-committerdate'
+alias gbb='gb && num="`git branch | wc -l`" && echo "Total: $num"'
+alias gfo='hub fork && git remote rename friederbluemle fb'
 alias ggp='git grep -I -n --heading --break'
 alias gm='git merge --ff-only'
 alias gst='git -c commit.gpgsign=false stash'
@@ -77,9 +85,14 @@ alias grq='GIT_SEQUENCE_EDITOR=: git rebase --autosquash -i origin/master'
 alias grc='git rebase --continue'
 alias grm='git rebase master'
 alias grim='git rebase -i master'
+alias grscp='git rebase --show-current-patch'
 alias gpf='git push fb'
 alias gpff='git push -f fb'
-alias gpr='git pull-request'
+alias gfb='branch="`gbr 2>/dev/null`" && gcm && gfa && gm && gpf && gb -d $branch'
+alias gpr='hub pull-request'
+alias prl='hub pr list -f "%sC%>(8)%i%Creset  %U  %H  %t%  l%n"'
+alias prc='hub pr checkout'
+alias prm='hub pr merge'
 alias gprl='git pr list'
 alias grh1='git reset --hard HEAD~1'
 alias grh2='git reset --hard HEAD~2'
@@ -93,7 +106,11 @@ alias gg='git checkout'
 alias gco='git checkout -'
 alias gl='git log'
 alias gll='git log --format=fuller'
-alias gl1='gll -1 --show-signature --parents'
+alias glll='gll --show-signature --parents'
+alias gl1='glll -1'
+alias gl2='glll -2'
+alias gl3='glll -3'
+alias gl4='glll -4'
 alias gs1='git show HEAD'
 alias gs2='git show HEAD~1'
 alias gs3='git show HEAD~2'
@@ -112,6 +129,7 @@ fi
 alias ackandsdk="ack -i 'com\.android\.tools\.build|buildtools|build\-tools|compilesdk|targetsdk|target=|android-'"
 alias aackandsdk="a -i 'com\.android\.tools\.build|buildtools|build\-tools|compilesdk|targetsdk|target=|android-'"
 alias cpsshpub="xclip -sel clip < ~/.ssh/id_rsa.pub"
-alias aa="a -1 '<<<' && F 1"
+alias aa="a -1 '<<<<<<<' && F 1"
 alias alint="android-lint-summary -g '**/lint-result*.xml' | less -FRSX"
 alias olint="find . -iname 'lint-*.html' -print0 | xargs -0 open"
+alias fixws="cp ~/tmp/.pre-commit-config.yaml . && pre-commit run --all-files && rm .pre-commit-config.yaml"
