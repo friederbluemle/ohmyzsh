@@ -9,8 +9,6 @@ alias md='take'
 
 alias a='sack'
 alias e='ranger'
-alias j='jobs'
-alias s='subl3'
 alias v='vim'
 alias x='cdiff'
 alias xs='cdiff -s'
