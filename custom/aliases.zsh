@@ -54,6 +54,14 @@ alias flv='fl --version'
 
 alias pc='pidcat'
 
+alias rnra='react-native run-android'
+alias rnri='react-native run-ios'
+alias rnla='react-native log-android'
+alias rnli='react-native log-ios'
+
+alias jl='jira ls'
+alias jv='jira view'
+
 # git
 [ -x "$(command -v hub)" ] && alias git=hub
 alias gs='git status -sb'
