@@ -54,6 +54,9 @@ alias flv='fl --version'
 
 alias pc='pidcat'
 
+alias rn='react-native'
+alias rni='react-native info'
+alias rns='react-native start'
 alias rnra='react-native run-android'
 alias rnri='react-native run-ios'
 alias rnla='react-native log-android'
