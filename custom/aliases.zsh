@@ -55,15 +55,19 @@ alias flv='fl --version'
 alias pc='pidcat'
 
 alias rn='react-native'
-alias rni='react-native info'
+alias rna='react-native run-android'
+alias rnad='react-native run-android --appIdSuffix="debug"'
+alias rni='react-native run-ios'
+alias rnn='react-native info'
 alias rns='react-native start'
-alias rnra='react-native run-android'
-alias rnri='react-native run-ios'
 alias rnla='react-native log-android'
 alias rnli='react-native log-ios'
+alias rnup='react-native upgrade'
 
 alias jl='jira ls'
 alias jv='jira view'
+
+alias vp='$EDITOR package.json'
 
 # git
 [ -x "$(command -v hub)" ] && alias git=hub
