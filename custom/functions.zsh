@@ -70,6 +70,11 @@ expinit() {
     npm version minor
 }
 
+# wo = work on
+wo() {
+    cd $(find ~/github -maxdepth 2 -type d | grep -i $* | grep -Ev Pods --max-count=1)
+}
+
 gjf() {
     java -jar ~/github/google/google-java-format/core/target/google-java-format-1.7-SNAPSHOT-all-deps.jar -i --aosp --skip-sorting-imports $*
 }
