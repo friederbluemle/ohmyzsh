@@ -14,7 +14,7 @@ alias x='cdiff'
 alias xs='cdiff -s'
 
 alias t='gtree -C --dirsfirst'
-alias tt='t -a | less'
+alias tt='t -a | less -RFX'
 alias t1='t -L 2'
 alias t2='t -L 3'
 
