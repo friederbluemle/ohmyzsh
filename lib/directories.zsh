@@ -34,9 +34,33 @@ function d () {
 compdef _dirs d
 
 # List directory contents
-alias lsa='ls -lah'
-alias lsbase='ls -l --group-directories-first'
-alias l='lsbase -h'
-alias ll='l -A'
-alias lll='lsbase -A'
-alias la='ls -lAh'
+if (( $+commands[eza] )); then
+  alias l='eza -l --sort=Name --group-directories-first --git --color=always'
+  alias ll='eza -agl --sort=Name --group-directories-first --git --color=always'
+  alias la='eza -agl@ --sort=Name --group-directories-first --git --color=always'
+  alias lll='eza -aBgl@ --sort=Name --group-directories-first --git --color=always'
+  alias t='eza -lT --sort=Name --group-directories-first --git-ignore --color=always'
+  alias tt='eza -alT --sort=Name --group-directories-first --git-ignore --ignore-glob=.git --color=always'
+  alias ttt='eza -aBlT --sort=Name --group-directories-first --git-ignore --ignore-glob=.git --color=always'
+  alias t1='eza -lT --sort=Name --group-directories-first --git-ignore --color=always --level=1'
+  alias t2='eza -lT --sort=Name --group-directories-first --git-ignore --color=always --level=2'
+  alias t3='eza -lT --sort=Name --group-directories-first --git-ignore --color=always --level=3'
+else
+  # GNU ls: gls from coreutils, or ls itself when it supports grouping
+  _ls=
+  if (( $+commands[gls] )); then
+    _ls=gls
+  elif command ls --group-directories-first -d / >/dev/null 2>&1; then
+    _ls=ls
+  fi
+  if [[ -n $_ls ]]; then
+    alias l="$_ls -lh --group-directories-first --color=always"
+    alias ll="$_ls -lAh --group-directories-first --color=always"
+    alias lll="$_ls -lA --group-directories-first --color=always"
+  else
+    alias l='ls -lh'
+    alias ll='ls -lAh'
+    alias lll='ls -lA'
+  fi
+  unset _ls
+fi
