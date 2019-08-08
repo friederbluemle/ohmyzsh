@@ -34,13 +34,13 @@ compdef _dirs d
 # List directory contents
 alias lsa='ls -lah'
 case "$OSTYPE" in
-  darwin*)  alias lsbase='gls -l --group-directories-first' ;;
+  darwin*)  alias lsbase='gls -l --group-directories-first --color=always' ;;
   *)        alias lsbase='ls -l --group-directories-first' ;;
 esac
 case "$HOST" in
-  fb-mbp*)
+  fb-mbp151)
     function l() {
-      lsbase -h --color=always "$@" | sed -- 's/pblf659x/fb/;s/472732084/dusers/;s/SINGAPOREPOWER\\Domain Users/dusers/'
+      lsbase -h "$@" | sed -- 's/f0b00n7/fb/'
     }
     ;;
   *)
