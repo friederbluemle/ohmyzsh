@@ -54,6 +54,10 @@ fastlane_wrapper() {
     fi
 }
 
+vv() {
+    fd $* | fpp
+}
+
 check_git_tags() {
     git show-ref -d --tags       |
     cut -b 42-                   | # to remove the commit-id
@@ -82,7 +86,7 @@ wo() {
 }
 
 gjf() {
-    java -jar ~/github/google/google-java-format/core/target/google-java-format-1.7-SNAPSHOT-all-deps.jar -i --aosp --skip-sorting-imports $*
+    java -jar ~/github/google/google-java-format/core/target/google-java-format-1.8-SNAPSHOT-all-deps.jar -i --aosp --skip-sorting-imports $*
 }
 
 jenkins() {
