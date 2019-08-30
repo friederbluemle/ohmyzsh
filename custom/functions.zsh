@@ -18,13 +18,16 @@ ttt() { gtree -ahD "$@" | less -RFX ;}
 
 # Update Gradle wrapper
 ugw() {
-    echo "task w(type:Wrapper){gradleVersion='$*'}" > build.gradle
-    rm -f settings.gradle
+    rm -f build.gradle build.gradle.kts
+    echo "task w(type:Wrapper){gradleVersion='$*';distributionType=Wrapper.DistributionType.ALL;}" > build.gradle
+    rm -f settings.gradle settings.gradle.kts
     gradle w
-    git checkout build.gradle
-    git checkout settings.gradle
-    sed -i "s/-bin\.zip/-all\.zip/g" gradle/wrapper/gradle-wrapper.properties
-    git add gradle
+    rm build.gradle
+    git checkout build.gradle 2>/dev/null
+    git checkout build.gradle.kts 2>/dev/null
+    git checkout settings.gradle 2>/dev/null
+    git checkout settings.gradle.kts 2>/dev/null
+    git add gradle gradlew gradlew.bat
     git commit -m"Update Gradle wrapper to $*"
 }
 
