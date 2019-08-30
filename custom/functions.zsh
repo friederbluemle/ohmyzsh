@@ -13,6 +13,9 @@ gtree() {
     fi
 }
 
+tt() { gtree -a "$@" | less -RFX ;}
+ttt() { gtree -ahD "$@" | less -RFX ;}
+
 # Update Gradle wrapper
 ugw() {
     echo "task w(type:Wrapper){gradleVersion='$*'}" > build.gradle
