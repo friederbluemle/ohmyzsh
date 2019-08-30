@@ -164,10 +164,11 @@ dexinfo() {
     done
 }
 
-# git clone wrapper
-spgcl() {
-    local ORG_DEFAULT="sp-digital"
-    local DIR_DEFAULT=$HOME/spgithub
+# git clone wrapper (company)
+cocl() {
+    local ORG_HOST="gecgithub01.walmart.com"
+    local ORG_DEFAULT="Walmart-Android"
+    local DIR_DEFAULT=$HOME/wmgithub
     if [ $# -gt 0 ]; then
         local ORG_NAME=`dirname $1`
         local REPO_NAME=`basename $1`
@@ -179,14 +180,14 @@ spgcl() {
         local DIR_NAME="$DIR_DEFAULT/$ORG_NAME/$REPO_NAME"
 
         if [[ ! -d $DIR_NAME ]]; then
-            GITHUB_HOST=code.in.spdigital.sg git clone $ORG_NAME/$REPO_NAME $DIR_NAME
+            GITHUB_HOST=$ORG_HOST hub clone $ORG_NAME/$REPO_NAME $DIR_NAME
         fi
 
         if [[ -d $DIR_NAME ]]; then
             cd $DIR_NAME
         fi
     else
-        echo "Usage: spgcl [org/]repo"
+        echo "Usage: cocl [org/]repo"
         echo ""
         echo "Clones a GitHub repo to $DIR_DEFAULT/<org>/<repo>"
         echo "If no org is specified, defaults to $ORG_DEFAULT"
