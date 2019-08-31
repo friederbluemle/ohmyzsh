@@ -45,7 +45,7 @@ uagp() {
     git commit -m"Update Android Gradle plugin to $*"
 }
 
-function emulator { ( cd "$(dirname "$(whence -p emulator)")" && ./emulator "$@"; ) }
+function emulator { ( cd "$ANDROID_HOME/emulator" && ./emulator "$@"; ) }
 
 # fastlane wrapper
 fastlane_wrapper() {
