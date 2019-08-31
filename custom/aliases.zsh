@@ -55,6 +55,7 @@ alias flv='fl --version'
 
 alias pc='pidcat'
 alias lk='logkitty'
+alias sc='shellcheck'
 alias mdl='markdownlint'
 
 alias yr='yarn run'
