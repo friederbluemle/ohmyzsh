@@ -79,6 +79,7 @@ alias erni='ern run-ios'
 alias jl='jira ls'
 alias jv='jira view'
 
+alias vb='$EDITOR build.gradle'
 alias vp='$EDITOR package.json'
 
 # git
