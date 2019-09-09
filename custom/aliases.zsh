@@ -58,7 +58,11 @@ alias lk='logkitty'
 alias sc='shellcheck'
 alias mdl='markdownlint'
 
+alias yf='yarn flow'
+alias yl='yarn lint'
 alias yr='yarn run'
+alias ys='yarn start'
+alias yt='yarn test'
 
 alias rn='react-native'
 alias rna='react-native run-android'
