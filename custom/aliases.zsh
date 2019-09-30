@@ -101,40 +101,39 @@ alias gcan='git commit --amend --no-edit'
 alias gcic='git commit -m"Initial commit"'
 alias gcwip='git commit -m"wip"'
 alias gcir='git init && git add . && gcic'
-alias gce='git commit --allow-empty -m"[empty commit `date +%s | tail -c 5`]"'
+alias gce='git commit --allow-empty -m"[commit `date +%s | tail -c 5`]"'
 alias gf='git fetch'
 alias gfa='gf --all --prune'
 alias gbr='git symbolic-ref --short HEAD'
+alias gsd='git symbolic-ref refs/remotes/origin/HEAD | sed "s@^refs/remotes/origin/@@"'
 alias gb='git branch -vv'
 alias gb1='git branch -vv --sort=-committerdate'
 alias gba='git branch -avv'
 alias gbb='gb && num="`git branch | wc -l`" && echo "Total: $num"'
-alias gfo='hub fork --remote-name fb'
 alias ggp='git grep -I -n --heading --break'
 alias gm='git merge --ff-only'
 alias gst='git -c commit.gpgsign=false stash'
-alias gstrq='git stash && GIT_SEQUENCE_EDITOR=: git rebase --autosquash -i origin/master && git stash pop'
-alias grq='GIT_SEQUENCE_EDITOR=: git rebase --autosquash -i origin/master'
+alias gsp='git stash pop'
 alias grc='git rebase --continue'
-alias grm='git rebase master'
-alias grim='git rebase -i master'
+alias grim='git rebase -i `gsd`'
 alias grscp='git rebase --show-current-patch'
+alias grq='GIT_SEQUENCE_EDITOR=: git rebase --autosquash -i origin/`gsd`'
+alias gstrq='gst && grq && gsp'
 alias gpf='git push fb'
 alias gpff='git push -f fb'
 alias gfb='branch="`gbr 2>/dev/null`" && gcm && gfa && gm && gpf && gb -d $branch'
+alias gfo='hub fork --remote-name fb'
 alias gpr='hub pull-request'
 alias prl='hub pr list -f "%sC%>(8)%i%Creset  %U  %H  %t%  l%n"'
 alias prc='hub pr checkout'
 alias prm='hub pr merge'
-alias gprl='git pr list'
 alias grh1='git reset --hard HEAD~1'
 alias grh2='git reset --hard HEAD~2'
 alias grh3='git reset --hard HEAD~3'
 alias grh4='git reset --hard HEAD~4'
 alias grht='git reset --hard `git rev-parse --abbrev-ref --symbolic-full-name @{u}`'
-alias gsp='git stash pop'
 alias gg='git checkout'
-alias gcm='git checkout master'
+alias gcm='git checkout `gsd`'
 alias gco='git checkout -'
 alias gcup='git checkout -b update-project'
 alias gcgw='git checkout -b update-gradle-wrapper'
@@ -158,7 +157,7 @@ alias gbp='git big-picture'
 if [ -x "$(command -v hub)" ]; then
     alias gh='hub browse'
 else
-    alias gh="git remote -v | grep --color=never origin | head -n 1 | grep --color=never -o 'github.*' | sed 's/.git\ .*//' | sed 's/\:/\//' | sed 's/^/https:\/\//' | xargs open"
+    alias gh="git remote get-url origin | sed 's/\.git$//' | sed 's#:#/#' | sed 's#https/#https:#' | sed 's#git@#https://#' | xargs open"
 fi
 
 alias ackandsdk="ack -i 'com\.android\.tools\.build|buildtools|build\-tools|compilesdk|targetsdk|target=|android-'"
@@ -169,3 +168,4 @@ alias alint="android-lint-summary -g '**/lint-result*.xml' | less -FRSX"
 alias olint="find . -iname 'lint-*.html' -print0 | xargs -0 open"
 alias fixws="cp ~/github/friederbluemle/misc/.pre-commit-config.yaml . && pre-commit run --all-files && rm .pre-commit-config.yaml"
 alias fixpj="cp ~/github/friederbluemle/misc/.fixpackrc . && fixpack && rm .fixpackrc"
+alias killhusky="cd .git/hooks/ && rm applypatch-msg commit-msg post-applypatch post-checkout post-commit post-merge post-receive post-rewrite post-update pre-applypatch pre-auto-gc pre-commit pre-push pre-rebase pre-receive prepare-commit-msg push-to-checkout update && cd ../.."
