@@ -92,7 +92,7 @@ gjf() {
 }
 
 jenkins() {
-    java -jar ~/bin/jenkins-cli-2.106.jar -s http://localhost:8080/ $*
+    java -jar ~/bin/jenkins-cli.jar -s ${JENKINS_URL:-http://localhost:8080/} $*
 }
 
 show-version() { zsh --version; zle accept-line }
