@@ -149,6 +149,11 @@ gcl() {
     fi
 }
 
+# git list repos under org
+grepos() {
+  hub api "orgs/${1:-fbluemle}/repos?per_page=100" | jq '.[].clone_url'
+}
+
 # git pull request checkout
 gprc() {
   git fetch -fu ${2:-origin} refs/pull/$1/head:pr/$1 && git checkout pr/$1
