@@ -151,7 +151,7 @@ gcl() {
 
 # git list repos under org
 grepos() {
-  hub api "orgs/${1:-fbluemle}/repos?per_page=100" | jq ".[].clone_url"
+  hub api "${2:-orgs}/${1:-fbluemle}/repos?per_page=100" | jq -r ".[].clone_url"
 }
 
 # git pull request checkout
