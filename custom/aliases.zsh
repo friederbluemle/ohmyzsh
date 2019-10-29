@@ -133,6 +133,7 @@ alias grh1='git reset --hard HEAD~1'
 alias grh2='git reset --hard HEAD~2'
 alias grh3='git reset --hard HEAD~3'
 alias grh4='git reset --hard HEAD~4'
+alias grho='git reset --hard ORIG_HEAD'
 alias grht='git reset --hard `git rev-parse --abbrev-ref --symbolic-full-name @{u}`'
 alias gg='git checkout'
 alias gcm='git checkout `gsd`'
@@ -161,6 +162,8 @@ if [ -x "$(command -v hub)" ]; then
 else
     alias gh="git remote get-url origin | sed 's/\.git$//' | sed 's#:#/#' | sed 's#https/#https:#' | sed 's#git@#https://#' | xargs open"
 fi
+alias ghl='grepos $(basename $PWD)'
+alias ghlu='grepos $(basename $PWD) users'
 
 alias ackandsdk="ack -i 'com\.android\.tools\.build|buildtools|build\-tools|compilesdk|targetsdk|target=|android-'"
 alias aackandsdk="a -i 'com\.android\.tools\.build|buildtools|build\-tools|compilesdk|targetsdk|target=|android-'"
@@ -171,3 +174,4 @@ alias olint="find . -iname 'lint-*.html' -print0 | xargs -0 open"
 alias fixws="cp ~/github/friederbluemle/misc/.pre-commit-config.yaml . && pre-commit run --all-files && rm .pre-commit-config.yaml"
 alias fixpj="cp ~/github/friederbluemle/misc/.fixpackrc . && fixpack && rm .fixpackrc"
 alias killhusky="cd .git/hooks/ && rm applypatch-msg commit-msg post-applypatch post-checkout post-commit post-merge post-receive post-rewrite post-update pre-applypatch pre-auto-gc pre-commit pre-push pre-rebase pre-receive prepare-commit-msg push-to-checkout update && cd ../.."
+alias clf="find . -iname '*.m' -o -iname '*.h' | xargs clang-format -i -style='{IndentWidth: 4, ColumnLimit: 999}'"
