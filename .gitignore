@@ -9,8 +9,8 @@ log/
 .DS_Store
 
 # editor configs
-.vscode
-.idea
+.vscode/
+.idea/
 
 # zcompile cached files
 *.zwc
