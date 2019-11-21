@@ -57,6 +57,7 @@ alias pc='pidcat'
 alias lk='logkitty'
 alias sc='shellcheck'
 alias mdl='markdownlint'
+alias of='onefetch'
 
 alias yf='yarn flow'
 alias yl='yarn lint'
