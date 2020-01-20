@@ -88,7 +88,6 @@ alias vb='$EDITOR build.gradle'
 alias vp='$EDITOR package.json'
 
 # git
-[ -x "$(command -v hub)" ] && alias git=hub
 alias gs='git status -sb'
 alias gsi='git status -sb --ignored'
 alias gd='git diff'
@@ -159,9 +158,9 @@ alias gra='gr --all'
 alias grt='[ ! -z `git rev-parse --show-cdup` ] && cd `git rev-parse --show-cdup || pwd`'
 alias gbp='git big-picture'
 if [ -x "$(command -v hub)" ]; then
-    alias gh='hub browse'
+    alias hb='hub browse'
 else
-    alias gh="git remote get-url origin | sed 's/\.git$//' | sed 's#:#/#' | sed 's#https/#https:#' | sed 's#git@#https://#' | xargs open"
+    alias hb="git remote get-url origin | sed 's/\.git$//' | sed 's#:#/#' | sed 's#https/#https:#' | sed 's#git@#https://#' | xargs open"
 fi
 alias ghl='grepos $(basename $PWD)'
 alias ghlu='grepos $(basename $PWD) users'
