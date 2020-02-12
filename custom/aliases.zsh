@@ -16,6 +16,8 @@ alias t='gtree -C --dirsfirst'
 alias t1='t -L 2'
 alias t2='t -L 3'
 
+alias ds='dust'
+
 alias as='studio'
 alias vs='code'
 alias ws='webstorm'
