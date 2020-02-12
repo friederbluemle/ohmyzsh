@@ -28,7 +28,7 @@ ugw() {
     git checkout settings.gradle 2>/dev/null
     git checkout settings.gradle.kts 2>/dev/null
     git add gradle gradlew gradlew.bat
-    git commit -m"Update Gradle wrapper to $*"
+    git commit -m"Update Gradle Wrapper to $*"
 }
 
 # Update fastlane
