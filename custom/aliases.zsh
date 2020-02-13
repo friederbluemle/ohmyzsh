@@ -13,9 +13,11 @@ alias e='ranger'
 alias v='vim'
 alias x='git diff --no-index --'
 
-alias t='gtree -C --dirsfirst'
-alias t1='t -L 2'
-alias t2='t -L 3'
+if ! [ -x "$(command -v exa)" ]; then
+  alias t='gtree -C --dirsfirst'
+  alias t1='t -L 2'
+  alias t2='t -L 3'
+fi
 
 alias as='studio'
 alias vs='code'

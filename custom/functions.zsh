@@ -13,8 +13,8 @@ gtree() {
     fi
 }
 
-tt() { gtree -a "$@" | less -RFX ;}
-ttt() { gtree -ahD "$@" | less -RFX ;}
+# tt() { gtree -a "$@" | less -RFX ;}
+# ttt() { gtree -ahD "$@" | less -RFX ;}
 
 initlicense() {
   [ ! -f LICENSE ] && cp $HOME/.misc/license-${1:-mit} LICENSE || echo "LICENSE already exists"
