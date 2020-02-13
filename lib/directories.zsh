@@ -35,7 +35,16 @@ compdef _dirs d
 
 # List directory contents
 if (( $+commands[eza] )); then
-  alias l='eza -l --sort=Name --group-directories-first --git --color=always'
+  # Optional user-mask file holds a substitution (e.g. 's/longuser/fb/')
+  # applied to l output, for machines with an imposed user name
+  if [[ -r ${XDG_CONFIG_HOME:-$HOME/.config}/user-mask ]]; then
+    _user_mask=$(<${XDG_CONFIG_HOME:-$HOME/.config}/user-mask)
+    function l() {
+      eza -l --sort=Name --group-directories-first --git --color=always "$@" | sed "$_user_mask"
+    }
+  else
+    alias l='eza -l --sort=Name --group-directories-first --git --color=always'
+  fi
   alias ll='eza -agl --sort=Name --group-directories-first --git --color=always'
   alias la='eza -agl@ --sort=Name --group-directories-first --git --color=always'
   alias lll='eza -aBgl@ --sort=Name --group-directories-first --git --color=always'
