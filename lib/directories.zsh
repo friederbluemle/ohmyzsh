@@ -32,21 +32,28 @@ function d () {
 compdef _dirs d
 
 # List directory contents
-alias lsa='ls -lah'
-case "$OSTYPE" in
-  darwin*)  alias lsbase='gls -l --group-directories-first --color=always' ;;
-  *)        alias lsbase='ls -l --group-directories-first' ;;
-esac
-case "$HOST" in
-  fb-mbp151)
+if [ -x "$(command -v exa)" ]; then
+  if [ "$USER" = "f0b00n7" ]; then
     function l() {
-      lsbase -h "$@" | sed -- 's/f0b00n7/fb/'
+      exa -gl --sort=Name --group-directories-first --git --color=always "$@" | sed -- "s/$USER/fb/"
     }
-    ;;
-  *)
-    alias l='lsbase -h'
-    ;;
-esac
-alias ll='lsbase -Ah'
-alias lll='lsbase -A'
-alias la='ls -lAh'
+  else
+    alias l='exa -gl --sort=Name --group-directories-first --git --color=always'
+  fi
+  alias ll='exa -agl --sort=Name --group-directories-first --git --color=always'
+  alias la='exa -agl@ --sort=Name --group-directories-first --git --color=always'
+  alias lll='exa -aBgl@ --sort=Name --group-directories-first --git --color=always'
+  alias t='exa -lT --sort=Name --group-directories-first --git-ignore --color=always'
+  alias tt='exa -alT --sort=Name --group-directories-first --git-ignore --ignore-glob=.git --color=always'
+  alias ttt='exa -aBlT --sort=Name --group-directories-first --git-ignore --ignore-glob=.git --color=always'
+  alias t2='exa -lT --sort=Name --group-directories-first --git-ignore --color=always --level=2'
+  alias t3='exa -lT --sort=Name --group-directories-first --git-ignore --color=always --level=3'
+elif [ -x "$(command -v gls)" ]; then
+  alias l='gls -lh --group-directories-first --color=always'
+  alias ll='gls -lAh --group-directories-first --color=always'
+  alias lll='gls -lA --group-directories-first --color=always'
+else
+  alias l='ls -lh --group-directories-first'
+  alias ll='ls -lAh --group-directories-first'
+  alias lll='ls -lA --group-directories-first'
+fi
