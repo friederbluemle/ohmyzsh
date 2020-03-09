@@ -52,10 +52,14 @@ alias gwl='./gradlew lint'
 alias gwt='./gradlew tasks'
 alias gwv='./gradlew --version'
 alias gwcb='./gradlew clean build'
+alias gwkc='./gradlew ktlintCheck'
+alias gwkf='./gradlew ktlintFormat'
 
 alias fl='fastlane_wrapper'
 alias fla='fl actions'
 alias flv='fl --version'
+
+alias initreadme='[ ! -f "README.md" ] && echo "# $(basename $(pwd))" > README.md || echo "README.md already exists"'
 
 alias pc='pidcat'
 alias lk='logkitty'
@@ -63,7 +67,8 @@ alias sc='shellcheck'
 alias mdl='markdownlint'
 alias of='onefetch'
 
-alias yf='yarn flow'
+alias yb='yarn build'
+alias yf='yarn format'
 alias yl='yarn lint'
 alias yr='yarn run'
 alias ys='yarn start'
@@ -88,6 +93,10 @@ alias erni='ern run-ios'
 alias jl='jira ls'
 alias jv='jira view'
 
+alias bb='bat settings.gradle build.gradle'
+alias bba='bat app/build.gradle'
+alias bp='bat package.json'
+alias br='bat README.md'
 alias vb='$EDITOR build.gradle'
 alias vp='$EDITOR package.json'
 
@@ -120,6 +129,7 @@ alias gst='git -c commit.gpgsign=false stash'
 alias gsp='git stash pop'
 alias grc='git rebase --continue'
 alias grr='git rebase -i --root'
+alias gcr='cd `git root`'
 alias grim='git rebase -i `gsd`'
 alias grscp='git rebase --show-current-patch'
 alias grq='GIT_SEQUENCE_EDITOR=: git rebase --autosquash -i origin/`gsd`'
@@ -128,6 +138,7 @@ alias gp='git push'
 alias gpf='git push fb'
 alias gpff='git push -f fb'
 alias gfb='branch="`gbr 2>/dev/null`" && gcm && gfa && gm && gpf && gb -d $branch'
+alias gci='hub ci-status'
 alias gfo='hub fork --remote-name fb'
 alias gpr='hub pull-request'
 alias prl='hub pr list -f "%sC%>(8)%i%Creset  %U  %H  %t%  l%n"'
@@ -159,6 +170,7 @@ alias gcp='git cherry-pick'
 alias gr='git log --graph --full-history --color --date=short --pretty=format:"%x1b[31m%h%x09%x1b[30;1m%ad%x1b[0m%x1b[32m%d%x1b[0m%x20%s%x20%x1b[34;1m[%aE]"'
 alias gr1='gr -10'
 alias gra='gr --all'
+alias gras='gra --simplify-by-decoration'
 alias grt='[ ! -z `git rev-parse --show-cdup` ] && cd `git rev-parse --show-cdup || pwd`'
 alias gbp='git big-picture'
 if [ -x "$(command -v hub)" ]; then
@@ -166,8 +178,8 @@ if [ -x "$(command -v hub)" ]; then
 else
     alias hb="git remote get-url origin | sed 's/\.git$//' | sed 's#:#/#' | sed 's#https/#https:#' | sed 's#git@#https://#' | xargs open"
 fi
-alias ghl='grepos $(basename $PWD)'
-alias ghlu='grepos $(basename $PWD) users'
+alias ghl='git_list_repos'
+alias ghlu='git_list_repos users'
 
 alias ackandsdk="ack -i 'com\.android\.tools\.build|buildtools|build\-tools|compilesdk|targetsdk|target=|android-'"
 alias aackandsdk="a -i 'com\.android\.tools\.build|buildtools|build\-tools|compilesdk|targetsdk|target=|android-'"

@@ -16,6 +16,10 @@ gtree() {
 tt() { gtree -a "$@" | less -RFX ;}
 ttt() { gtree -ahD "$@" | less -RFX ;}
 
+initlicense() {
+  [ ! -f LICENSE ] && cp $HOME/github/friederbluemle/misc/license-${1:-mit} LICENSE || echo "LICENSE already exists"
+}
+
 # Update Gradle wrapper
 ugw() {
     rm -f build.gradle build.gradle.kts
@@ -149,9 +153,9 @@ gcl() {
     fi
 }
 
-# git list repos under org
-grepos() {
-  hub api "${2:-orgs}/${1:-fbluemle}/repos?per_page=100" | jq -r ".[].clone_url"
+# git list repo urls
+git_list_repos() {
+  hub api "${1:-orgs}/${2:-$(basename $PWD)}/repos?${3:-sort=pushed}" | jq -r ".[].clone_url" | sed s'/\.git$//'
 }
 
 # git pull request checkout
