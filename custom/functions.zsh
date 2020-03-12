@@ -17,10 +17,45 @@ tt() { gtree -a "$@" | less -RFX ;}
 ttt() { gtree -ahD "$@" | less -RFX ;}
 
 initlicense() {
-  [ ! -f LICENSE ] && cp $HOME/github/friederbluemle/misc/license-${1:-mit} LICENSE || echo "LICENSE already exists"
+  [ ! -f LICENSE ] && cp $HOME/.misc/license-${1:-mit} LICENSE || echo "LICENSE already exists"
 }
 
-# Update Gradle wrapper
+initci() {
+  local ci
+  if [ -f gradlew ]; then
+    ci="gradle"
+  elif [ -f package.json ]; then
+    grep 'react-native' package.json >> /dev/null
+    if [ $? -eq 0 ]; then
+      ci="react-native"
+    elif [ -f yarn.lock ]; then
+      ci="node-yarn"
+    else
+      ci="node-npm"
+    fi
+  fi
+  if [ ! -z $1 ]; then
+    ci=$1
+  fi
+  if [ -z $ci ]; then
+    echo "CI type not detected/specified"
+    return 1
+  fi
+  local cifile=$HOME/.misc/gh-workflow-ci-${ci}.yml
+  if [ ! -f $cifile ]; then
+    echo "File not found: $cifile"
+    return 1
+  fi
+  echo "Using $cifile"
+  mkdir -p .github/workflows
+  cp $cifile .github/workflows/ci.yml
+  github_url="$(git ls-remote --get-url | sed -e 's/\.git.*$//')"
+  printf "\n[![ci][1]][2]\n\n[1]: %s/workflows/ci/badge.svg\n[2]: %s/actions\n" "$github_url" "$github_url" >> README.md
+  git add .github/workflows README.md
+  git commit -m"Enable basic GitHub Actions CI"
+}
+
+# Update Gradle Wrapper
 ugw() {
     rm -f build.gradle build.gradle.kts
     echo "task w(type:Wrapper){gradleVersion='$*';distributionType=Wrapper.DistributionType.ALL;}" > build.gradle
