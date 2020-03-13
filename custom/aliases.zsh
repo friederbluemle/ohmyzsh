@@ -16,8 +16,6 @@ alias t='gtree -C --dirsfirst'
 alias t1='t -L 2'
 alias t2='t -L 3'
 
-alias ds='dust'
-
 alias as='studio'
 alias vs='code'
 alias ws='webstorm'
@@ -61,11 +59,14 @@ alias flv='fl --version'
 
 alias initreadme='[ ! -f "README.md" ] && echo "# $(basename $(pwd))" > README.md || echo "README.md already exists"'
 
-alias pc='pidcat'
+alias com='cost-of-modules'
+alias ds='dust'
 alias lk='logkitty'
-alias sc='shellcheck'
+alias loc='tokei'
 alias mdl='markdownlint'
 alias of='onefetch'
+alias pc='pidcat'
+alias sc='shellcheck'
 
 alias yb='yarn build'
 alias yf='yarn format'
