@@ -111,6 +111,7 @@ alias gdse='git diff --summary --stat | fpp'
 alias gdcs='git diff --summary --stat --cached'
 alias gdcse='git diff --summary --stat --cached | fpp'
 alias gdchk='git diff --check 4b825dc642cb6eb9a060e54bf8d69288fbee4904'
+alias gca='git commit --amend'
 alias gcan='git commit --amend --no-edit'
 alias gcic='git commit -m"Initial commit"'
 alias gcwip='git commit -m"wip"'
@@ -190,6 +191,6 @@ alias alint="android-lint-summary -g '**/lint-result*.xml' | less -FRSX"
 alias olint="find . -iname 'lint-*.html' -print0 | xargs -0 open"
 alias fixws="cp ~/github/friederbluemle/misc/.pre-commit-config.yaml . && pre-commit run --all-files && rm .pre-commit-config.yaml"
 alias fixpj="cp ~/github/friederbluemle/misc/.fixpackrc . && fixpack && rm .fixpackrc"
-alias killhusky="cd .git/hooks/ && rm applypatch-msg commit-msg post-applypatch post-checkout post-commit post-merge post-receive post-rewrite post-update pre-applypatch pre-auto-gc pre-commit pre-merge-commit pre-push pre-rebase pre-receive prepare-commit-msg push-to-checkout sendemail-validate update && cd ../.."
+alias killhusky="cd .git/hooks/ && rm -f applypatch-msg commit-msg post-applypatch post-checkout post-commit post-merge post-receive post-rewrite post-update pre-applypatch pre-auto-gc pre-commit pre-merge-commit pre-push pre-rebase pre-receive prepare-commit-msg push-to-checkout sendemail-validate update && cd ../.."
 alias clf="git ls-files '*.m' '*.h' | xargs clang-format -i -style='{IndentWidth: 4, ColumnLimit: 999}'"
 alias clf2="git ls-files '*.m' '*.h' | xargs clang-format -i -style='{IndentWidth: 2, ColumnLimit: 999}'"
