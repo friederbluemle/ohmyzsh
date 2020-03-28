@@ -8,6 +8,7 @@ alias ppp='cd ../../..'
 alias md='take'
 
 alias a='sack'
+alias b='bat'
 alias e='ranger'
 alias v='vim'
 alias x='git diff --no-index --'
