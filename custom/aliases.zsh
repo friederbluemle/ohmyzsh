@@ -43,6 +43,10 @@ alias dl='cd ~/downloads'
 alias dll='ls -tr1 ~/downloads | tail'
 alias dlll='ls -ltr ~/downloads | tail'
 
+alias te='trans :en'
+alias tg='trans :de'
+alias tj='trans :ja'
+
 alias gw='./gradlew'
 alias gwc='./gradlew clean'
 alias gwb='./gradlew build'
