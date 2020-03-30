@@ -159,32 +159,20 @@ dexinfo() {
     done
 }
 
-# git clone wrapper
-gcl() {
-    local ORG_DEFAULT="friederbluemle"
-    local DIR_DEFAULT=$HOME/github
+github_clone() {
+    local GH_ROOT=${GITHUB_ROOT:-$HOME/github}
     if [ $# -gt 0 ]; then
-        local ORG_NAME=`dirname $1`
-        local REPO_NAME=`basename $1`
-
-        if [ $ORG_NAME = "." ]; then
-            ORG_NAME=$ORG_DEFAULT
+        local OWNER=`dirname $1`
+        if [ $OWNER = "." ]; then
+            OWNER=$(basename $PWD)
         fi
-
-        local DIR_NAME="$DIR_DEFAULT/$ORG_NAME/$REPO_NAME"
-
-        if [[ ! -d $DIR_NAME ]]; then
-            git clone $1 $DIR_NAME
-        fi
-
-        if [[ -d $DIR_NAME ]]; then
-            cd $DIR_NAME
-        fi
+        local TARGET="$GH_ROOT/$OWNER/$(basename $1)"
+        [[ -d $TARGET ]] && cd $TARGET || hub clone $1 $TARGET && cd $TARGET
     else
-        echo "Usage: gcl [org/]repo"
+        echo "Usage: ${funcstack[1]} [<owner>/]<repo>"
         echo ""
-        echo "Clones a GitHub repo to $DIR_DEFAULT/<org>/<repo>"
-        echo "If no org is specified, defaults to $ORG_DEFAULT"
+        echo "Clones a GitHub repo to $GH_ROOT/<owner>/<repo>"
+        echo "<owner> defaults to the name of the current directory"
     fi
 }
 
