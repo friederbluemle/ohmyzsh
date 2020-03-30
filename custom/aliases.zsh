@@ -103,7 +103,7 @@ alias jv='jira view'
 alias bb='bat settings.gradle build.gradle'
 alias bba='bat app/build.gradle'
 alias bp='bat package.json'
-alias br='bat README.md'
+alias br='find . -type f -iname "readme*" | xargs bat'
 alias vb='$EDITOR build.gradle'
 alias vp='$EDITOR package.json'
 
