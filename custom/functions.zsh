@@ -22,8 +22,13 @@ initlicense() {
 
 initci() {
   local ci
-  if [ -f gradlew ]; then
-    ci="gradle"
+  if [ -f build.gradle ]; then
+    grep 'android' build.gradle >> /dev/null
+    if [ $? -eq 0 ]; then
+      ci="android"
+    else
+      ci="gradle"
+    fi
   elif [ -f package.json ]; then
     grep 'react-native' package.json >> /dev/null
     if [ $? -eq 0 ]; then
