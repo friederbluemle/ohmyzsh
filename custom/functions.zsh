@@ -162,12 +162,13 @@ dexinfo() {
 github_clone() {
     local GH_ROOT=${GITHUB_ROOT:-$HOME/github}
     if [ $# -gt 0 ]; then
-        local OWNER=`dirname $1`
+        local OWNER=$(dirname $1)
+        local REPO=$(basename $1)
         if [ $OWNER = "." ]; then
             OWNER=$(basename $PWD)
         fi
-        local TARGET="$GH_ROOT/$OWNER/$(basename $1)"
-        [[ -d $TARGET ]] && cd $TARGET || hub clone $1 $TARGET && cd $TARGET
+        local TARGET="$OWNER/$REPO"
+        [[ -d $TARGET ]] && cd $TARGET || hub clone $TARGET $GH_ROOT/$TARGET && cd $GH_ROOT/$TARGET
     else
         echo "Usage: ${funcstack[1]} [<owner>/]<repo>"
         echo ""
