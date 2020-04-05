@@ -172,8 +172,8 @@ github_clone() {
         if [ $OWNER = "." ]; then
             OWNER=$(basename $PWD)
         fi
-        local TARGET="$OWNER/$REPO"
-        [[ -d $TARGET ]] && cd $TARGET || hub clone $TARGET $GH_ROOT/$TARGET && cd $GH_ROOT/$TARGET
+        local DIR="$GH_ROOT/$OWNER/$REPO"
+        [[ -d $DIR ]] && cd $DIR || hub clone $OWNER/$REPO $DIR && cd $DIR
     else
         echo "Usage: ${funcstack[1]} [<owner>/]<repo>"
         echo ""
