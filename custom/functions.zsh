@@ -116,7 +116,7 @@ check_git_tags() {
 
 # Express init
 expinit() {
-    express --git $1 && cd $1
+    npx express-generator --git $1 && cd $1
     git init
     git add .
     git commit -m"Initial commit"
