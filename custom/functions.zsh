@@ -132,7 +132,7 @@ wo() {
 }
 
 gjf() {
-    java -jar ~/github/google/google-java-format/core/target/google-java-format-1.8-SNAPSHOT-all-deps.jar -i --aosp --skip-sorting-imports $*
+  JAVA_HOME=$(cat ~/bin/gjf-java-home.txt) java -jar ~/bin/gjf-current.jar -i --aosp --skip-sorting-imports $*
 }
 
 jenkins() {
