@@ -6,6 +6,7 @@ alias pp='cd ../..'
 alias ppp='cd ../../..'
 
 alias md='take'
+alias mt='cd $(mktemp -d)'
 
 alias a='sack'
 alias b='bat'
