@@ -113,9 +113,11 @@ alias jv='jira view'
 
 alias bb='bat settings.gradle build.gradle'
 alias bba='bat app/build.gradle'
+alias bl='bat .looper.yml'
 alias bp='bat package.json'
 alias br='find . -type f -iname "readme*" | xargs bat'
 alias vb='$EDITOR build.gradle'
+alias vl='$EDITOR .looper.yml'
 alias vp='$EDITOR package.json'
 
 # git
@@ -143,6 +145,9 @@ alias gb='git branch -vv'
 alias gb1='git branch -vv --sort=-committerdate'
 alias gba='git branch -avv'
 alias gbb='gb && num="`git branch | wc -l`" && echo "Total: $num"'
+alias gt='git tag -l --sort=-v:refname | head'
+alias gtt='git tag -l --sort=-v:refname'
+alias gtchk="git show-ref -d --tags | cut -b 42- | sort | sed 's/\^{}//' | uniq -c | sed 's/2\ refs\/tags\// a /' | sed 's/1\ refs\/tags\//lw /'"
 alias ggp='git grep -I -n --heading --break'
 alias gm='git merge --ff-only'
 alias gcr='cd $(git rev-parse --show-cdup)'
