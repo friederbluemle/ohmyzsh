@@ -12,14 +12,14 @@ alias a='sack'
 alias b='bat'
 alias e='ranger'
 alias v='vim'
-alias x='git diff --no-index --'
+alias x='delta'
 
 alias t='gtree -C --dirsfirst'
 alias t1='t -L 2'
 alias t2='t -L 3'
 
 alias as='studio'
-alias vs='code'
+alias cl='clion'
 alias ws='webstorm'
 alias opa='studio android && xed ios'
 
@@ -27,8 +27,8 @@ alias ea='vim ~/.config/alacritty/alacritty.yml'
 alias ei='vim ~/.config/i3/config'
 alias eib='vim ~/.i3blocks.conf'
 alias es='vim ~/.config/skhd/skhdrc'
-alias et='vim ~/.config/termite/config'
 alias ev='vim ~/.vimrc'
+alias ew='vim ~/.config/wezterm/wezterm.lua'
 alias ey='vim ~/.config/yabai/yabairc'
 alias ez='vim ~/.oh-my-zsh/custom/aliases.zsh'
 alias ezf='vim ~/.oh-my-zsh/custom/functions.zsh'
@@ -48,6 +48,11 @@ alias dlll='ls -ltr ~/downloads | tail'
 alias te='trans :en'
 alias tg='trans :de'
 alias tj='trans :ja'
+
+alias cb='cargo build'
+alias ck='cargo check'
+alias cr='cargo run'
+alias ct='cargo test'
 
 alias gw='./gradlew'
 alias gwc='./gradlew clean'
@@ -118,6 +123,7 @@ alias gs='git status -sb'
 alias gsi='git status -sb --ignored'
 alias gd='git diff'
 alias gdc='git diff --cached'
+alias gdn='git diff --no-index --'
 alias gds='git diff --summary --stat'
 alias gdse='git diff --summary --stat | fpp'
 alias gdcs='git diff --summary --stat --cached'
@@ -196,8 +202,10 @@ alias grt='[ ! -z `git rev-parse --show-cdup` ] && cd `git rev-parse --show-cdup
 alias gbp='git big-picture'
 if [ -x "$(command -v hub)" ]; then
     alias hb='hub browse'
+    alias hbf='hub browse --fork'
 else
     alias hb="git remote get-url origin | sed 's/\.git$//' | sed 's#:#/#' | sed 's#https/#https:#' | sed 's#git@#https://#' | xargs open"
+    alias hbf="git remote get-url fb | sed 's/\.git$//' | sed 's#:#/#' | sed 's#https/#https:#' | sed 's#git@#https://#' | xargs open"
 fi
 alias ghl='git_list_repos'
 alias ghlu='git_list_repos users'
@@ -213,3 +221,4 @@ alias fixpj="cp ~/github/friederbluemle/misc/.fixpackrc . && fixpack && rm .fixp
 alias killhusky="cd .git/hooks/ && rm -f applypatch-msg commit-msg post-applypatch post-checkout post-commit post-merge post-receive post-rewrite post-update pre-applypatch pre-auto-gc pre-commit pre-merge-commit pre-push pre-rebase pre-receive prepare-commit-msg push-to-checkout sendemail-validate update && cd ../.."
 alias clf="git ls-files '*.m' '*.h' | xargs clang-format -i -style='{IndentWidth: 4, ColumnLimit: 999}'"
 alias clf2="git ls-files '*.m' '*.h' | xargs clang-format -i -style='{IndentWidth: 2, ColumnLimit: 999}'"
+alias spc="a 'Github|Gitlab|Typescript|Javascript|Cocoapods|Fastlane|Paypal|XCode|Linkedin|Testflight|Youtube|NPM|FaceBook'"
