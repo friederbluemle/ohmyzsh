@@ -235,3 +235,4 @@ alias killhusky="rm -f .git/hooks/{applypatch-msg,commit-msg,post-applypatch,pos
 alias clf="git ls-files '*.m' '*.h' | xargs clang-format -i -style='{IndentWidth: 4, ColumnLimit: 999}'"
 alias clf2="git ls-files '*.m' '*.h' | xargs clang-format -i -style='{IndentWidth: 2, ColumnLimit: 999}'"
 alias spc="a 'Github|Gitlab|Typescript|Javascript|Cocoapods|Fastlane|Paypal|XCode|Linkedin|Testflight|Youtube|NPM|FaceBook'"
+alias ip="curl -s https://am.i.mullvad.net/json | jq"
