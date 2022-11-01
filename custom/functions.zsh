@@ -201,6 +201,12 @@ gprc() {
   git fetch -fu ${2:-origin} refs/pull/$1/head:pr/$1 && git checkout pr/$1
 }
 
+# git show PR for commit hash
+github_pr_search() {
+  gh pr list --search "$1" --state merged
+  gh pr list --search "$1" --state merged --json url --jq '.[0].url'
+}
+
 n() {
   nohup mousepad $1 </dev/null &>/dev/null &
 }
