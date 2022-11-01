@@ -184,6 +184,7 @@ alias prll='hub pr list -L 94 -s all -o updated -f "%pC%>(6)%i %x1b[30;1m%uD%Cre
 alias prlc='hub pr list -L 10 -s all -f "%pC%>(6)%i %x1b[30;1m%cD%Creset %Cgreen%<(24)%H%Creset %<(55)%t %Cblue%U%Creset %l%n"'
 alias prc='hub pr checkout'
 alias prm='hub pr merge'
+alias prs='github_pr_search'
 alias gre='git reset'
 alias grh1='git reset --hard HEAD~1'
 alias grh2='git reset --hard HEAD~2'
