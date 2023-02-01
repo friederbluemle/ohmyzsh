@@ -77,6 +77,7 @@ alias sc='shellcheck'
 
 alias ya='yarn android'
 alias yb='yarn build'
+alias yc='yarn tsc'
 alias yd='yarn docs'
 alias yf='yarn format'
 alias yi='yarn ios'
