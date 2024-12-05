@@ -34,22 +34,23 @@ function d () {
 compdef _dirs d
 
 # List directory contents
-if [ -x "$(command -v exa)" ]; then
+if [ -x "$(command -v eza)" ]; then
   if [ "$USER" = "f0b00n7" ]; then
     function l() {
-      exa -gl --sort=Name --group-directories-first --git --color=always "$@" | sed -- "s/$USER/fb/"
+      eza -gl --sort=Name --group-directories-first --git --color=always "$@" | sed -- "s/$USER/fb/"
     }
   else
-    alias l='exa -gl --sort=Name --group-directories-first --git --color=always'
+    alias l='eza -gl --sort=Name --group-directories-first --git --color=always'
   fi
-  alias ll='exa -agl --sort=Name --group-directories-first --git --color=always'
-  alias la='exa -agl@ --sort=Name --group-directories-first --git --color=always'
-  alias lll='exa -aBgl@ --sort=Name --group-directories-first --git --color=always'
-  alias t='exa -lT --sort=Name --group-directories-first --git-ignore --color=always'
-  alias tt='exa -alT --sort=Name --group-directories-first --git-ignore --ignore-glob=.git --color=always'
-  alias ttt='exa -aBlT --sort=Name --group-directories-first --git-ignore --ignore-glob=.git --color=always'
-  alias t2='exa -lT --sort=Name --group-directories-first --git-ignore --color=always --level=2'
-  alias t3='exa -lT --sort=Name --group-directories-first --git-ignore --color=always --level=3'
+  alias ll='eza -agl --sort=Name --group-directories-first --git --color=always'
+  alias la='eza -agl@ --sort=Name --group-directories-first --git --color=always'
+  alias lll='eza -aBgl@ --sort=Name --group-directories-first --git --color=always'
+  alias t='eza -lT --sort=Name --group-directories-first --git-ignore --color=always'
+  alias tt='eza -alT --sort=Name --group-directories-first --git-ignore --ignore-glob=.git --color=always'
+  alias ttt='eza -aBlT --sort=Name --group-directories-first --git-ignore --ignore-glob=.git --color=always'
+  alias t1='eza -lT --sort=Name --group-directories-first --git-ignore --color=always --level=1'
+  alias t2='eza -lT --sort=Name --group-directories-first --git-ignore --color=always --level=2'
+  alias t3='eza -lT --sort=Name --group-directories-first --git-ignore --color=always --level=3'
 elif [ -x "$(command -v gls)" ]; then
   alias l='gls -lh --group-directories-first --color=always'
   alias ll='gls -lAh --group-directories-first --color=always'

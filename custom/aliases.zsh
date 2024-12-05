@@ -10,15 +10,13 @@ alias mt='cd $(mktemp -d)'
 
 alias a='sack'
 alias b='bat'
-alias e='ranger'
+alias e='yazi'
 alias v='vim'
 alias x='git diff --no-index'
 
-if ! [ -x "$(command -v exa)" ]; then
-  alias t='gtree -C --dirsfirst'
-  alias t1='t -L 2'
-  alias t2='t -L 3'
-fi
+alias t='gtree -C --dirsfirst'
+alias t1='t -L 2'
+alias t2='t -L 3'
 
 alias as='studio'
 alias cl='clion'
@@ -72,6 +70,7 @@ alias of='onefetch'
 alias pc='pidcat'
 alias sc='shellcheck'
 
+alias nitt='npm info . time | tail'
 alias ya='yarn android'
 alias yb='yarn build'
 alias yc='yarn tsc'
@@ -83,12 +82,12 @@ alias ylf='yarn lint --fix'
 alias yp='yarn prettier -c .'
 alias ypc='yarn prettier -c'
 alias ypl='yarn prettier -l'
-alias ypw='yarn prettier --write'
-alias yr='yarn run'
+alias ypw='yarn prettier -w'
+alias ypp='yarn patch-package'
 alias ys='yarn start'
 alias ysr='yarn start --reset-cache'
-alias ysb='yarn storybook'
 alias yt='yarn test'
+alias ytc='yarn jest --coverage'
 alias yu='yarn upgrade-interactive'
 alias yul='yarn upgrade-interactive --latest'
 
@@ -151,10 +150,13 @@ alias gb='git branch -vv'
 alias gb1='git branch -vv --sort=-committerdate'
 alias gba='git branch -avv'
 alias gbb='gb && num="`git branch | wc -l`" && echo "Total: $num"'
+alias gbl='git blame -w -C -C -C'
 alias grl="git remote -v"
-alias gt='git tag -l --sort=-v:refname'
+alias gt='git log --tags --no-walk --date=iso-local --pretty=format:"%x1b[31m%h%x20%x1b[30;1m%ad%x1b[0m%x1b[32m%x20%G?%d%x09%x1b[34;1m%aE%x1b[0m%x09%s"'
+alias gt1='gt -10'
 alias gtd='git describe --tags --long --dirty'
 alias gtchk="git show-ref -d --tags | cut -b 42- | sort | sed 's/\^{}//' | uniq -c | sed 's/2\ refs\/tags\// a /' | sed 's/1\ refs\/tags\//lw /'"
+alias gtt='git tag -l --sort=-v:refname'
 alias ggp='git grep -I -n --heading --break'
 alias gm='git merge --ff-only'
 alias gcr='cd $(git rev-parse --show-cdup)'
@@ -163,6 +165,7 @@ alias gst='git -c commit.gpgsign=false stash'
 alias gsx='git stash drop'
 alias gsp='git stash pop'
 alias grc='git rebase --continue'
+alias grd='git range-diff @{u} @{1} @'
 alias grr='git rebase -i --root'
 alias grim='git rebase -i `gsd`'
 alias grscp='git rebase --show-current-patch'
@@ -170,12 +173,13 @@ alias grq='GIT_SEQUENCE_EDITOR=: git rebase --autosquash -i origin/`gsd`'
 alias gstrq='gst && grq && gsp'
 alias gp='git push'
 alias gpf='git push fb'
-alias gpff='git push -f fb'
+alias gpff='git push --force-with-lease fb'
+alias gpfo='git push --force-with-lease'
 alias gfb='branch="`gbr 2>/dev/null`" && gcm && gfa && gm && gpf && gb -d $branch'
 alias gci='hub ci-status'
 alias gcl='github_clone'
 alias gfo='hub fork --remote-name fb'
-alias gfoa='hub remote add friederbluemle && git remote rename friederbluemle fb'
+alias gfoa='hub remote add $GITHUB_USER && git remote rename $GITHUB_USER $GITHUB_USER_SHORT'
 alias gpr='hub pull-request'
 alias gil='hub issue -L 25 -s all -o updated -f "%sC%>(6)%i %x1b[30;1m%uD%Creset %<(55)%t %Cblue%U%Creset %l%n"'
 alias gill='hub issue -L 94 -s all -o updated -f "%sC%>(6)%i %x1b[30;1m%uD%Creset %<(55)%t %Cblue%U%Creset %l%n"'
@@ -232,8 +236,8 @@ alias cpsshpub="xclip -sel clip < ~/.ssh/id_rsa.pub"
 alias aa="a -1 '<<<<<<<' && F 1"
 alias alint="android-lint-summary -g '**/lint-result*.xml' | less -FRSX"
 alias olint="find . -iname 'lint-*.html' -print0 | xargs -0 open"
-alias fixws="cp ~/github/friederbluemle/misc/.pre-commit-config.yaml . && pre-commit run --all-files && rm .pre-commit-config.yaml"
-alias fixpj="cp ~/github/friederbluemle/misc/.fixpackrc . && fixpack && rm .fixpackrc"
+alias fixpj='cp $MISC_ROOT/.fixpackrc . && fixpack && rm .fixpackrc'
+alias fixws='cp $MISC_ROOT/.pre-commit-config.yaml . && pre-commit run --all-files && rm .pre-commit-config.yaml'
 alias killhusky="rm -f .git/hooks/{applypatch-msg,commit-msg,post-applypatch,post-checkout,post-commit,post-merge,post-receive,post-rewrite,post-update,pre-applypatch,pre-auto-gc,pre-commit,pre-merge-commit,pre-push,pre-rebase,pre-receive,prepare-commit-msg,push-to-checkout,sendemail-validate,update} && grep -q hooksPath .git/config && git config --unset core.hooksPath || true"
 alias clf="git ls-files '*.m' '*.h' | xargs clang-format -i -style='{IndentWidth: 4, ColumnLimit: 999}'"
 alias clf2="git ls-files '*.m' '*.h' | xargs clang-format -i -style='{IndentWidth: 2, ColumnLimit: 999}'"
