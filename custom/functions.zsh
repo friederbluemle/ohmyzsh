@@ -128,7 +128,7 @@ expinit() {
 
 # wo = work on
 wo() {
-    cd $(find ~/github -maxdepth 2 -type d | grep -i $* | grep -Ev Pods --max-count=1)
+    cd $(find $SRC_ROOT -maxdepth 2 -type d | grep -i $* | grep -Ev Pods --max-count=1)
 }
 
 gjf() {
@@ -138,6 +138,8 @@ gjf() {
 jenkins() {
     java -jar ~/bin/jenkins-cli.jar -s ${JENKINS_URL:-http://localhost:8080/} $*
 }
+
+jh() { export JAVA_HOME=$(/usr/libexec/java_home -v $1) }
 
 show-version() { zsh --version; zle accept-line }
 
@@ -165,20 +167,27 @@ dexinfo() {
 }
 
 github_clone() {
-    local GH_ROOT=${GITHUB_ROOT:-$HOME/github}
     if [ $# -gt 0 ]; then
         local OWNER=$(dirname $1)
         local REPO=$(basename $1)
         if [ $OWNER = "." ]; then
-            OWNER=$(basename $PWD)
+            if git rev-parse --is-inside-work-tree &>/dev/null; then
+                OWNER=$(basename $(dirname $(git rev-parse --show-toplevel)))
+            else
+                OWNER=$(basename $PWD)
+            fi
         fi
-        local DIR="$GH_ROOT/$OWNER/$REPO"
+        local DIR="${GITHUB_ROOT:-/tmp}/$OWNER/$REPO"
         [[ -d $DIR ]] && cd $DIR || hub clone $OWNER/$REPO $DIR && cd $DIR
     else
         echo "Usage: ${funcstack[1]} [<owner>/]<repo>"
         echo ""
-        echo "Clones a GitHub repo to $GH_ROOT/<owner>/<repo>"
-        echo "<owner> defaults to the name of the current directory"
+        echo "Clones a GitHub repo to <path>/<owner>/<repo>"
+        echo "<path> defaults to /tmp, can be overridden using GITHUB_ROOT"
+        echo "<owner> defaults to the name of the current directory, or the name"
+        echo "of the parent directory when run inside an existing repo"
+        echo ""
+        echo "If the destination already exists, only changes directory."
     fi
 }
 
@@ -202,7 +211,7 @@ rs() {
 
 upload_ssh_pub_to_github() {
   local KEY=`cat ~/.ssh/id_rsa.pub`
-  curl -u "friederbluemle" --data "{\"key\":\"$KEY\"}" https://api.github.com/user/keys
+  curl -u $GITHUB_USER --data "{\"key\":\"$KEY\"}" https://api.github.com/user/keys
 }
 
 replacelines() {
