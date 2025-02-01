@@ -37,10 +37,10 @@ compdef _dirs d
 if [ -x "$(command -v eza)" ]; then
   if [ "$USER" = "f0b00n7" ]; then
     function l() {
-      eza -gl --sort=Name --group-directories-first --git --color=always "$@" | sed -- "s/$USER/fb/"
+      eza -l --sort=Name --group-directories-first --git --color=always "$@" | sed -- "s/$USER/fb/"
     }
   else
-    alias l='eza -gl --sort=Name --group-directories-first --git --color=always'
+    alias l='eza -l --sort=Name --group-directories-first --git --color=always'
   fi
   alias ll='eza -agl --sort=Name --group-directories-first --git --color=always'
   alias la='eza -agl@ --sort=Name --group-directories-first --git --color=always'
