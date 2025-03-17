@@ -8,11 +8,19 @@ alias ppp='cd ../../..'
 alias md='take'
 alias mt='cd $(mktemp -d)'
 
+alias cb='cd ~/bin'
+alias cs='cd ~/src'
+alias ct='cd ~/tmp'
+alias cw='cd ~/wsrc'
+
 alias a='sack'
-alias b='bat'
 alias e='yazi'
 alias v='vim'
 alias x='git diff --no-index'
+
+alias fc='c $(fd --type directory | fzf)'
+alias fe='e $(fd --type directory | fzf)'
+alias fv='v $(fzf)'
 
 alias as='studio'
 alias cl='clion'
@@ -69,7 +77,7 @@ alias sc='shellcheck'
 alias nitt='npm info . time | tail'
 alias ya='yarn android'
 alias yb='yarn build'
-alias yc='yarn tsc'
+alias yc='yarn tsc --diagnostics'
 alias yd='yarn docs'
 alias yf='yarn format'
 alias yi='yarn ios'
@@ -237,5 +245,5 @@ alias fixws='cp $MISC_ROOT/.pre-commit-config.yaml . && pre-commit run --all-fil
 alias killhusky="rm -f .git/hooks/{applypatch-msg,commit-msg,post-applypatch,post-checkout,post-commit,post-merge,post-receive,post-rewrite,post-update,pre-applypatch,pre-auto-gc,pre-commit,pre-merge-commit,pre-push,pre-rebase,pre-receive,prepare-commit-msg,push-to-checkout,sendemail-validate,update} && grep -q hooksPath .git/config && git config --unset core.hooksPath || true"
 alias clf="git ls-files '*.m' '*.h' | xargs clang-format -i -style='{IndentWidth: 4, ColumnLimit: 999}'"
 alias clf2="git ls-files '*.m' '*.h' | xargs clang-format -i -style='{IndentWidth: 2, ColumnLimit: 999}'"
-alias spc="a 'Github|Gitlab|Typescript|Javascript|Cocoapods|Fastlane|Paypal|XCode|Linkedin|Testflight|Youtube|NPM|FaceBook'"
+alias spc="a 'Github|Gitlab|Typescript|Intellij|Javascript|Jetbrains|Cocoapods|Fastlane|Paypal|XCode|Linkedin|Testflight|Youtube|NPM|FaceBook'"
 alias ip="curl -s https://am.i.mullvad.net/json | jq"
