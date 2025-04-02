@@ -13,8 +13,38 @@ gtree() {
     fi
 }
 
-tt() { gtree -a "$@" | less -RFX ;}
-ttt() { gtree -ahD "$@" | less -RFX ;}
+nd() {
+  if [ $# -lt 2 ]; then
+    echo "Usage: nd <package> <fromVersion> [<toVersion>] [file]"
+    return 1
+  fi
+
+  local pkg="$1"
+  local from="$pkg@$2"
+  local to="$pkg@${3:-latest}"
+  local file="$4"
+
+  if [ -z "$file" ]; then
+    npm diff --diff="$from" --diff="$to" | diff-so-fancy | less --tabs=4 -RFX
+  else
+    npm diff --diff="$from" --diff="$to" |
+      awk -v f="$file" '/^diff --git / { keep = index($0, f) > 0 } keep' |
+      diff-so-fancy | less --tabs=4 -RFX
+  fi
+}
+
+ndstat() {
+  if [ $# -lt 2 ]; then
+    echo "Usage: ndstat <package> <fromVersion> [<toVersion>]"
+    return 1
+  fi
+
+  local pkg="$1"
+  local from="$pkg@$2"
+  local to="$pkg@${3:-latest}"
+
+  npm diff --diff="$from" --diff="$to" | diffstat -C
+}
 
 initlicense() {
   [ ! -f LICENSE ] && cp $HOME/.misc/license-${1:-mit} LICENSE || echo "LICENSE already exists"
