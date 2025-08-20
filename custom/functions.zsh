@@ -13,6 +13,8 @@ gtree() {
     fi
 }
 
+nit() { npm info ${1:-.} time; }
+
 nd() {
   if [ $# -lt 2 ]; then
     echo "Usage: nd <package> <fromVersion> [<toVersion>] [file]"

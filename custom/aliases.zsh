@@ -74,7 +74,6 @@ alias of='onefetch'
 alias pc='pidcat'
 alias sc='shellcheck'
 
-alias nitt='npm info . time | tail'
 alias ya='yarn android'
 alias yb='yarn build'
 alias yc='yarn tsc --diagnostics'
