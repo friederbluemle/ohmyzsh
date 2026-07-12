@@ -35,7 +35,7 @@ compdef _dirs d
 
 # List directory contents
 if [ -x "$(command -v eza)" ]; then
-  if [ "$USER" = "f0b00n7" ]; then
+  if [ "$USER" = "friederbluemle" ]; then
     function l() {
       eza -l --sort=Name --group-directories-first --git --color=always "$@" | sed -- "s/$USER/fb/"
     }
