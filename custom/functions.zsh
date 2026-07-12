@@ -1,3 +1,21 @@
+ai () {
+  local q
+  printf "🤖 Ask me anything: "
+  IFS= read -r q
+
+  # Ensure the user actually typed something
+  [ -z "$q" ] && return
+
+  openai responses create \
+    --format yaml \
+    --transform 'output.#(type=="message").content.0.text' <<YAML
+model: gpt-4o-mini
+input: |
+  $q
+YAML
+  echo
+}
+
 # Make dir and cd into it
 #md() { mkdir -p "$@" && cd "$@"; }
 
