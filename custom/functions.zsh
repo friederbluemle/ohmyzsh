@@ -315,19 +315,17 @@ git_branch_info() {
       fi
       git config --get branch.$branch.remote >/dev/null 2>&1
       if [[ $? -eq 0 ]]; then
-        diverged=$(command git log @{u}... --oneline | wc -l)
-        if [[ $diverged -ne 0 ]]; then
+        counts=($(command git rev-list --left-right --count "@{u}...HEAD" 2>/dev/null))
+        behind=${counts[1]}
+        ahead=${counts[2]}
+        if [[ $((ahead + behind)) -ne 0 ]]; then
           echo -ne "%{$fg_bold[yellow]%}"
-          ahead=$(command git log @{u}.. --oneline | wc -l)
-          if [[ $ahead -eq $diverged ]]; then
+          if [[ $behind -eq 0 ]]; then
             echo -ne "↑ $ahead"
+          elif [[ $ahead -eq 0 ]]; then
+            echo -ne "↓ $behind"
           else
-            behind=$(command git log ..@{u} --oneline | wc -l)
-            if [[ $behind -eq $diverged ]]; then
-              echo -ne "↓ $behind"
-            else
-              echo -ne "↕ ↑ $ahead↓ $behind"
-            fi
+            echo -ne "↕ ↑ $ahead↓ $behind"
           fi
         fi
       fi
